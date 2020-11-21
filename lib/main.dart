@@ -176,6 +176,9 @@ class FirstScreen extends StatelessWidget {
               "Dimitri Leurs",
               style: Theme.of(context).textTheme.headline4,
             ),
+            SizedBox(
+              height: 50,
+            ),
             RaisedButton(
               onPressed: () {
                 (Router.of(context).routerDelegate as MyRouterDelegate)
