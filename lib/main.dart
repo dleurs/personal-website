@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(MyApp());
@@ -164,30 +165,69 @@ class AppConfig {
 }
 
 class FirstScreen extends StatelessWidget {
+  _launchURL() async {
+    const url = 'https://www.linkedin.com/in/dimitri-leurs-666733130/';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: ListView(
+          //mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "Dimitri Leurs",
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            RaisedButton(
-              onPressed: () {
-                (Router.of(context).routerDelegate as MyRouterDelegate)
-                    ._handleTapped(null);
-              },
+            SizedBox(height: 50),
+            Center(
               child: Text(
-                "Show second page",
+                "Dimitri Leurs",
+                style: Theme.of(context).textTheme.headline4,
               ),
-            )
+            ),
+            SizedBox(height: 50),
+            ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 400, maxHeight: 400),
+              child: Image.asset('assets/images/Dimitri_Leurs_Numberly.jpg'),
+            ),
+            SizedBox(height: 50),
+            Center(
+              child: Text(
+                "Developpeur Flutter - Actuellement chez Numerbly",
+                style: Theme.of(context).textTheme.headline6,
+              ),
+            ),
+            SizedBox(height: 50),
+            Center(
+              child: Text(
+                "Contact me on Linkedin :",
+                //style: Theme.of(context).textTheme.headline6,
+              ),
+            ),
+            SizedBox(height: 10),
+            GestureDetector(
+                onTap: _launchURL,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: 100, maxHeight: 100),
+                  child: Image.asset('assets/images/linkedin.jpg'),
+                )),
+            SizedBox(height: 50),
+            Center(
+              child: RaisedButton(
+                onPressed: () {
+                  (Router.of(context).routerDelegate as MyRouterDelegate)
+                      ._handleTapped(null);
+                },
+                child: Text(
+                  "Have a nice day :)",
+                ),
+              ),
+            ),
+            SizedBox(height: 50),
           ],
         ),
       ),
