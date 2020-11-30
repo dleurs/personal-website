@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:personal_website/screens/detail_screen.dart';
+import 'package:personal_website/screens/home_screen.dart';
+import 'package:personal_website/screens/unknown_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,9 +19,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'My Flutter App',
+      title: 'Dimitri LEURS',
       routerDelegate: _routerDelegate,
       routeInformationParser: _routeInformationParser,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -75,17 +78,17 @@ class MyRouterDelegate extends RouterDelegate<AppConfig>
     // is shown even when currentState == null
     pages.add(
       MaterialPage(
-        key: ValueKey('FirstPage'),
-        child: FirstScreen(),
+        key: ValueKey('HomeScreen'),
+        child: HomeScreen(),
       ),
     );
     if (currentState == null || currentState.isUnknown) {
       pages.add(
-          MaterialPage(key: ValueKey('UnknownPage'), child: UnknownScreen()));
+          MaterialPage(key: ValueKey('UnknownScreen'), child: UnknownScreen()));
     } else if (currentState.isSecondPage) {
       // Must be at the end in order to show NavBar back button when 404
       pages.add(
-          MaterialPage(key: ValueKey('SecondPage'), child: SecondScreen()));
+          MaterialPage(key: ValueKey('DetailScreen'), child: DetailScreen()));
     }
 
     return pages;
@@ -116,7 +119,7 @@ class MyRouterDelegate extends RouterDelegate<AppConfig>
     return;
   }
 
-  void _handleTapped(void nothing) {
+  void handleTapped(void nothing) {
     currentState = AppConfig.secondPage();
     notifyListeners();
   }
@@ -161,111 +164,5 @@ class AppConfig {
     }
     str += " }";
     return str;
-  }
-}
-
-class FirstScreen extends StatelessWidget {
-  _launchURL() async {
-    const url = 'https://www.linkedin.com/in/dimitri-leurs-666733130/';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: ListView(
-          //mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(height: 50),
-            Center(
-              child: Text(
-                "Dimitri Leurs",
-                style: Theme.of(context).textTheme.headline4,
-              ),
-            ),
-            SizedBox(height: 50),
-            ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 400, maxHeight: 400),
-              child: Image.asset('assets/images/Dimitri_Leurs_Numberly.jpg'),
-            ),
-            SizedBox(height: 50),
-            Center(
-              child: Text(
-                "Developpeur Flutter - Actuellement chez Numerbly",
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            ),
-            SizedBox(height: 50),
-            Center(
-              child: Text(
-                "Contact me on Linkedin :",
-                //style: Theme.of(context).textTheme.headline6,
-              ),
-            ),
-            SizedBox(height: 10),
-            GestureDetector(
-                onTap: _launchURL,
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: 100, maxHeight: 100),
-                  child: Image.asset('assets/images/linkedin.jpg'),
-                )),
-            SizedBox(height: 50),
-            Center(
-              child: RaisedButton(
-                onPressed: () {
-                  (Router.of(context).routerDelegate as MyRouterDelegate)
-                      ._handleTapped(null);
-                },
-                child: Text(
-                  "Have a nice day :)",
-                ),
-              ),
-            ),
-            SizedBox(height: 50),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class SecondScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Know me better",
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class UnknownScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Text(
-          "Page not found",
-          style: Theme.of(context).textTheme.headline4,
-        ),
-      ),
-    );
   }
 }
