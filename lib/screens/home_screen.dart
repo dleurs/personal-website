@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:personal_website/generated/l10n.dart';
 import 'package:personal_website/main.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:country_icons/country_icons.dart';
 
 class HomeScreen extends StatelessWidget {
   _launchURL() async {
@@ -16,7 +17,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              icon: Image.asset('icons/flags/png/fr.png',
+                  package: 'country_icons'),
+              onPressed: () {})
+        ],
+      ),
       body: Center(
         child: ListView(
           //mainAxisAlignment: MainAxisAlignment.center,
