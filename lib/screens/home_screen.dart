@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/generated/l10n.dart';
 import 'package:personal_website/main.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -23,7 +24,7 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 50),
             Center(
               child: Text(
-                "Dimitri Leurs",
+                S.of(context).my_name,
                 style: Theme.of(context).textTheme.headline4,
               ),
             ),
@@ -35,14 +36,14 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 50),
             Center(
               child: Text(
-                "Développeur Flutter",
+                S.of(context).my_job_title,
                 style: Theme.of(context).textTheme.headline6,
               ),
             ),
             SizedBox(height: 20),
             Center(
               child: Text(
-                "Actuellement en alternance chez Numberbly",
+                S.of(context).my_job_subtitle,
                 style: TextStyle(
                     fontSize:
                         Theme.of(context).textTheme.headline6.fontSize * 0.8),
@@ -51,7 +52,7 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 50),
             Center(
               child: Text(
-                "Contact me on Linkedin :",
+                S.of(context).contact_me,
                 //style: Theme.of(context).textTheme.headline6,
               ),
             ),
@@ -71,7 +72,7 @@ class HomeScreen extends StatelessWidget {
                       .handleTapped(null);
                 },
                 child: Text(
-                  "Have a nice day :)",
+                  S.of(context).thank_you,
                 ),
               ),
             ),

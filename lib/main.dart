@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:personal_website/generated/l10n.dart';
 import 'package:personal_website/screens/detail_screen.dart';
 import 'package:personal_website/screens/home_screen.dart';
 import 'package:personal_website/screens/unknown_screen.dart';
@@ -20,6 +22,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Dimitri LEURS',
+      localizationsDelegates: [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
       routerDelegate: _routerDelegate,
       routeInformationParser: _routeInformationParser,
       debugShowCheckedModeBanner: false,
