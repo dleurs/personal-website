@@ -34,7 +34,8 @@ class _SettingsLanguageScreenState extends State<SettingsLanguageScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Flag("GB", height: 20, width: 35, fit: BoxFit.fill),
+                    Image.asset('assets/images/uk-flag.jpg',
+                        height: 20, width: 35),
                     SizedBox(
                       width: 20,
                     ),
@@ -63,7 +64,8 @@ class _SettingsLanguageScreenState extends State<SettingsLanguageScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Flag("FR", height: 20, width: 35, fit: BoxFit.fill),
+                    Image.asset('assets/images/fr-flag.jpg',
+                        height: 20, width: 35),
                     SizedBox(
                       width: 20,
                     ),
@@ -93,7 +95,8 @@ class _SettingsLanguageScreenState extends State<SettingsLanguageScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Flag("RU", height: 20, width: 35, fit: BoxFit.fill),
+                      Image.asset('assets/images/ru-flag.jpg',
+                          height: 20, width: 35),
                       SizedBox(
                         width: 20,
                       ),

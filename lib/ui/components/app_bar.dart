@@ -8,7 +8,7 @@ class MyAppBar {
     if (Intl.getCurrentLocale() == "fr") {
       return [
         IconButton(
-            icon: Flag("FR", fit: BoxFit.fill),
+            icon: Image.asset('assets/images/fr-flag.jpg'),
             onPressed: () {
               (Router.of(context).routerDelegate as MyRouterDelegate)
                   .toSettingsLanguageScreen();
@@ -17,7 +17,7 @@ class MyAppBar {
     } else if (Intl.getCurrentLocale() == "ru") {
       return [
         IconButton(
-            icon: Flag("RU", fit: BoxFit.fill),
+            icon: Image.asset('assets/images/ru-flag.jpg'),
             onPressed: () {
               (Router.of(context).routerDelegate as MyRouterDelegate)
                   .toSettingsLanguageScreen();
@@ -26,7 +26,7 @@ class MyAppBar {
     } else {
       return [
         IconButton(
-            icon: Flag("GB", fit: BoxFit.fill),
+            icon: Image.asset('assets/images/uk-flag.jpg'),
             onPressed: () {
               (Router.of(context).routerDelegate as MyRouterDelegate)
                   .toSettingsLanguageScreen();
