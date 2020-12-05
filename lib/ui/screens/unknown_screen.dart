@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_website/main.dart';
+import 'package:personal_website/navigation/app_config.dart';
 
 class UnknownScreen extends StatelessWidget {
   static AppConfig getConfig() {

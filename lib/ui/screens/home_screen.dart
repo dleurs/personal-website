@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/generated/l10n.dart';
-import 'package:personal_website/main.dart';
+import 'package:personal_website/navigation/app_config.dart';
+import 'package:personal_website/navigation/my_router_delegate.dart';
 import 'package:personal_website/ui/components/app_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 

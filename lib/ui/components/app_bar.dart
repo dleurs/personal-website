@@ -1,7 +1,6 @@
-import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:personal_website/main.dart';
+import 'package:personal_website/navigation/my_router_delegate.dart';
 
 class MyAppBar {
   static List<Widget> buildActions({@required BuildContext context}) {

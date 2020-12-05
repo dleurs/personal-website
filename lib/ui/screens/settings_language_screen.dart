@@ -1,7 +1,7 @@
-import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_website/generated/l10n.dart';
-import 'package:personal_website/main.dart';
+import 'package:personal_website/navigation/app_config.dart';
+import 'package:personal_website/navigation/my_router_delegate.dart';
 
 class SettingsLanguageScreen extends StatefulWidget {
   static AppConfig getConfig() {
