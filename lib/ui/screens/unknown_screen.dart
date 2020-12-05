@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/main.dart';
 
 class UnknownScreen extends StatelessWidget {
-  final String fullPath = '/404';
-  final String lastPath = '404';
-  final int urlSection = 1;
-  final String valueKey = "ValueKey";
+  static AppConfig getConfig() {
+    return AppConfig(uri: Uri(path: "/unknown"));
+  }
 
   @override
   Widget build(BuildContext context) {

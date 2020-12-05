@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/main.dart';
 
-class DetailScreen extends StatelessWidget {
+class DetailScreen extends StatefulWidget {
+  static AppConfig getConfig() {
+    return AppConfig(uri: Uri(path: "/details"));
+  }
+
+  @override
+  _DetailScreenState createState() => _DetailScreenState();
+}
+
+class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

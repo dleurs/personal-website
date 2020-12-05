@@ -1,29 +1,36 @@
+import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:country_icons/country_icons.dart';
+import 'package:personal_website/main.dart';
 
 class MyAppBar {
-  static List<Widget> buildActions() {
+  static List<Widget> buildActions({@required BuildContext context}) {
     if (Intl.getCurrentLocale() == "fr") {
       return [
         IconButton(
-            icon:
-                Image.asset('icons/flags/png/fr.png', package: 'country_icons'),
-            onPressed: () {})
+            icon: Flag("FR", fit: BoxFit.fill),
+            onPressed: () {
+              (Router.of(context).routerDelegate as MyRouterDelegate)
+                  .toSettingsLanguageScreen();
+            })
       ];
     } else if (Intl.getCurrentLocale() == "ru") {
       return [
         IconButton(
-            icon:
-                Image.asset('icons/flags/png/ru.png', package: 'country_icons'),
-            onPressed: () {})
+            icon: Flag("RU", fit: BoxFit.fill),
+            onPressed: () {
+              (Router.of(context).routerDelegate as MyRouterDelegate)
+                  .toSettingsLanguageScreen();
+            })
       ];
     } else {
       return [
         IconButton(
-            icon:
-                Image.asset('icons/flags/png/en.png', package: 'country_icons'),
-            onPressed: () {})
+            icon: Flag("US", fit: BoxFit.fill),
+            onPressed: () {
+              (Router.of(context).routerDelegate as MyRouterDelegate)
+                  .toSettingsLanguageScreen();
+            })
       ];
     }
   }

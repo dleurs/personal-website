@@ -3,9 +3,17 @@ import 'package:personal_website/generated/l10n.dart';
 import 'package:personal_website/main.dart';
 import 'package:personal_website/ui/components/app_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:country_icons/country_icons.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+
+  static AppConfig getConfig() {
+    return AppConfig(uri: Uri(path: "/"));
+  }
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   _launchURL() async {
     const url = 'https://www.linkedin.com/in/dimitri-leurs-666733130/';
     if (await canLaunch(url)) {
@@ -19,12 +27,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(
-              icon: Image.asset('icons/flags/png/en.png',
-                  package: 'country_icons'),
-              onPressed: () {})
-        ],
+        actions: MyAppBar.buildActions(context: context),
       ),
       body: Center(
         child: ListView(
@@ -78,7 +81,7 @@ class HomeScreen extends StatelessWidget {
               child: RaisedButton(
                 onPressed: () {
                   (Router.of(context).routerDelegate as MyRouterDelegate)
-                      .handleTapped(null);
+                      .toDetailScreen();
                 },
                 child: Text(
                   S.of(context).thank_you,
@@ -86,6 +89,10 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 50),
+            ButtonBar(
+              alignment: MainAxisAlignment.center,
+              children: [],
+            ),
           ],
         ),
       ),
