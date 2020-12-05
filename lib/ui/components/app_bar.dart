@@ -26,7 +26,7 @@ class MyAppBar {
     } else {
       return [
         IconButton(
-            icon: Flag("US", fit: BoxFit.fill),
+            icon: Flag("GB", fit: BoxFit.fill),
             onPressed: () {
               (Router.of(context).routerDelegate as MyRouterDelegate)
                   .toSettingsLanguageScreen();
