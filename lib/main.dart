@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:personal_website/generated/l10n.dart';
-import 'package:personal_website/screens/detail_screen.dart';
-import 'package:personal_website/screens/home_screen.dart';
-import 'package:personal_website/screens/unknown_screen.dart';
+import 'package:personal_website/ui/screens/detail_screen.dart';
+import 'package:personal_website/ui/screens/home_screen.dart';
+import 'package:personal_website/ui/screens/unknown_screen.dart';
 
 void main() {
   runApp(MyApp());

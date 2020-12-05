@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/generated/l10n.dart';
 import 'package:personal_website/main.dart';
+import 'package:personal_website/ui/components/app_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:country_icons/country_icons.dart';
 
@@ -20,7 +21,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
-              icon: Image.asset('icons/flags/png/fr.png',
+              icon: Image.asset('icons/flags/png/en.png',
                   package: 'country_icons'),
               onPressed: () {})
         ],
