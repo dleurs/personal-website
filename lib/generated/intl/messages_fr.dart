@@ -22,9 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "contact_me" : MessageLookupByLibrary.simpleMessage("Contactez moi sur Linkedin"),
+    "detail_welcoming" : MessageLookupByLibrary.simpleMessage("Apprenez-en plus sur moi"),
     "my_job_subtitle" : MessageLookupByLibrary.simpleMessage("Travail actuellement en CDI chez Numberly"),
     "my_job_title" : MessageLookupByLibrary.simpleMessage("Développeur Flutter"),
     "my_name" : MessageLookupByLibrary.simpleMessage("Dimitri Leurs"),
+    "page_not_found" : MessageLookupByLibrary.simpleMessage("Page inconnue"),
     "thank_you" : MessageLookupByLibrary.simpleMessage("Merci")
   };
 }

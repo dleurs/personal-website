@@ -35,30 +35,40 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Contact me on Linkedin`
+  /// `Contactez moi sur Linkedin`
   String get contact_me {
     return Intl.message(
-      'Contact me on Linkedin',
+      'Contactez moi sur Linkedin',
       name: 'contact_me',
       desc: '',
       args: [],
     );
   }
 
-  /// `Currently working at Numberly`
+  /// `Apprenez-en plus sur moi`
+  String get detail_welcoming {
+    return Intl.message(
+      'Apprenez-en plus sur moi',
+      name: 'detail_welcoming',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Travail actuellement en CDI chez Numberly`
   String get my_job_subtitle {
     return Intl.message(
-      'Currently working at Numberly',
+      'Travail actuellement en CDI chez Numberly',
       name: 'my_job_subtitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Flutter developer`
+  /// `Développeur Flutter`
   String get my_job_title {
     return Intl.message(
-      'Flutter developer',
+      'Développeur Flutter',
       name: 'my_job_title',
       desc: '',
       args: [],
@@ -75,10 +85,20 @@ class S {
     );
   }
 
-  /// `Thank you`
+  /// `Page inconnue`
+  String get page_not_found {
+    return Intl.message(
+      'Page inconnue',
+      name: 'page_not_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Merci`
   String get thank_you {
     return Intl.message(
-      'Thank you',
+      'Merci',
       name: 'thank_you',
       desc: '',
       args: [],
@@ -91,8 +111,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   List<Locale> get supportedLocales {
     return const <Locale>[
-      Locale.fromSubtags(languageCode: 'en'),
       Locale.fromSubtags(languageCode: 'fr'),
+      Locale.fromSubtags(languageCode: 'en'),
       Locale.fromSubtags(languageCode: 'ru'),
     ];
   }

@@ -2,12 +2,16 @@
   "@@locale": "fr",
   "contact_me": "Contactez moi sur Linkedin",
   "@contact_me": {},
+  "detail_welcoming": "Apprenez-en plus sur moi",
+  "@detail_welcoming": {},
   "my_job_subtitle": "Travail actuellement en CDI chez Numberly",
   "@my_job_subtitle": {},
   "my_job_title": "Développeur Flutter",
   "@my_job_title": {},
   "my_name": "Dimitri Leurs",
   "@my_name": {},
+  "page_not_found": "Page inconnue",
+  "@page_not_found": {},
   "thank_you": "Merci",
   "@thank_you": {}
 }

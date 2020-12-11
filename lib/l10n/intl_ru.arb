@@ -1,13 +1,17 @@
 {
   "@@locale": "ru",
-  "contact_me": "Свяжитесь со мной в Linkedin",
+  "contact_me": "Contact me on Linkedin",
   "@contact_me": {},
-  "my_job_subtitle": "В настоящее время работает в Numberly",
+  "detail_welcoming": "Узнай больше обо мне",
+  "@detail_welcoming": {},
+  "my_job_subtitle": "Currently working at Numberly",
   "@my_job_subtitle": {},
-  "my_job_title": "Программист Flutter",
+  "my_job_title": "Flutter developer",
   "@my_job_title": {},
-  "my_name": "Димитрий Лерс",
+  "my_name": "Dimitri Leurs",
   "@my_name": {},
-  "thank_you": "Спасибо",
+  "page_not_found": "Страница не найдена",
+  "@page_not_found": {},
+  "thank_you": "Thank you",
   "@thank_you": {}
 }
