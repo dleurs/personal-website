@@ -15,21 +15,10 @@ jobs:
         java-version: '12.x'
     - uses: subosito/flutter-action@v1
       with:
-        #flutter-version: '1.12.x'
-        channel: 'beta' # Currently you have to use beta channel for Flutter web.
+        flutter-version: '1.24.0-10.2.pre'
+        #channel: 'beta' # Currently you have to use beta channel for Flutter web.
     - run: flutter upgrade # You also get the flutter version
     - run: flutter config --enable-web
-
-        # Bug versions package
-    - run: cat pubspec.yaml
-      working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}
-    - run: |
-        sed -i 's/intl: ^0.16.1/intl: ^0.17.0-nullsafety.2/g' pubspec.yaml 
-      working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}
-    - run: cat pubspec.yaml
-      working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}
-
-
     - run: flutter packages get
     - run: flutter build web --release
     - run: pwd

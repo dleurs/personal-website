@@ -47,6 +47,7 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
         child: Text(
           S.of(context).my_job_title,
           style: Theme.of(context).textTheme.headline6,
+          textAlign: TextAlign.center,
         ),
       ),
       SizedBox(height: Const.mediumPadding),
