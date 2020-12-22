@@ -23,7 +23,8 @@ jobs:
         # Bug versions package
     - run: cat pubspec.yaml
       working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}
-    - run: sed -i 's/intl: ^0.16.1/intl: ^0.17.0-nullsafety.2/g' pubspec.yaml 
+    - run: |
+        sed -i 's/intl: ^0.16.1/intl: ^0.17.0-nullsafety.2/g' pubspec.yaml 
       working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}
     - run: cat pubspec.yaml
       working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}
