@@ -65,10 +65,10 @@ class S {
     );
   }
 
-  /// `Développeur Flutter`
+  /// `Ingénieur développeur mobile Flutter`
   String get my_job_title {
     return Intl.message(
-      'Développeur Flutter',
+      'Ingénieur développeur mobile Flutter',
       name: 'my_job_title',
       desc: '',
       args: [],
