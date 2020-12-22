@@ -1,7 +1,7 @@
 name: personal_website
 description: A new Flutter project.
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
@@ -16,7 +16,8 @@ dependencies:
   cupertino_icons: ^1.0.0
   equatable: ^1.2.5
   flag: ^3.1.0
-  intl: ^0.16.1
+  intl: ^0.17.0-nullsafety.2 #for github actions
+  #intl: ^0.16.1 for tests
   intl_utils: ^1.8.0
   url_launcher: ^5.7.10
 
@@ -24,7 +25,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 flutter:
-
   uses-material-design: true
 
   assets:
