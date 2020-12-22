@@ -17,7 +17,7 @@ jobs:
       with:
         flutter-version: '1.24.0-10.2.pre'
         channel: 'beta' # Currently you have to use beta channel for Flutter web.
-    - run: flutter upgrade # You also get the flutter version
+    #- run: flutter upgrade # You also get the flutter version
     - run: flutter config --enable-web
     - run: flutter packages get
     - run: flutter build web --release
