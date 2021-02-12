@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:personal_website/navigation/app_config.dart';
 import 'package:personal_website/ui/screens/detail_screen.dart';
 import 'package:personal_website/ui/screens/home_screen.dart';
-import 'package:personal_website/ui/screens/settings_language_screen.dart';
 import 'package:personal_website/ui/screens/unknown_screen.dart';
 
 class MyRouterDelegate extends RouterDelegate<AppConfig>
@@ -30,10 +29,6 @@ class MyRouterDelegate extends RouterDelegate<AppConfig>
       pages.add(MaterialPage(
           key: ValueKey(DetailScreen.getConfig().hashCode),
           child: DetailScreen()));
-    } else if (currentState == SettingsLanguageScreen.getConfig()) {
-      pages.add(MaterialPage(
-          key: ValueKey(SettingsLanguageScreen.getConfig().hashCode),
-          child: SettingsLanguageScreen()));
     } else if (currentState == UnknownScreen.getConfig()) {
       pages.add(MaterialPage(
           key: ValueKey(UnknownScreen.getConfig().hashCode),
@@ -70,11 +65,6 @@ class MyRouterDelegate extends RouterDelegate<AppConfig>
 
   void toDetailScreen() {
     currentState = DetailScreen.getConfig();
-    notifyListeners();
-  }
-
-  void toSettingsLanguageScreen() {
-    currentState = SettingsLanguageScreen.getConfig();
     notifyListeners();
   }
 

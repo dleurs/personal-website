@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_website/generated/l10n.dart';
 import 'package:personal_website/ui/components/app_bar.dart';
 import 'package:personal_website/utils/constant.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -69,13 +70,20 @@ abstract class BaseScreenState<T extends StatefulWidget> extends State<T> {
 
   Widget buildLargeScreen(BuildContext context);
 
+  void setLanguage(String countryCode) {
+    setState(() {
+      S.load(Locale(countryCode));
+    });
+  }
+
   ///
   /// Implement this to build an [AppBar] for all screens
   /// Override this method in each screen that needs a specific one
   ///
   PreferredSizeWidget buildAppBar(BuildContext context) {
     return AppBar(
-      actions: MyAppBar.buildActions(context: context),
+      actions:
+          MyAppBar.buildActions(context: context, setLanguage: setLanguage),
     );
   }
 
