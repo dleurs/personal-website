@@ -55,6 +55,26 @@ class S {
     );
   }
 
+  /// `Anglais`
+  String get english_language {
+    return Intl.message(
+      'Anglais',
+      name: 'english_language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Français`
+  String get french_language {
+    return Intl.message(
+      'Français',
+      name: 'french_language',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Travail actuellement en CDI chez Numberly`
   String get my_job_subtitle {
     return Intl.message(
@@ -90,6 +110,16 @@ class S {
     return Intl.message(
       'Page inconnue',
       name: 'page_not_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Russe`
+  String get russian_language {
+    return Intl.message(
+      'Russe',
+      name: 'russian_language',
       desc: '',
       args: [],
     );

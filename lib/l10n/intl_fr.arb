@@ -4,6 +4,10 @@
   "@contact_me": {},
   "detail_welcoming": "Apprenez-en plus sur moi",
   "@detail_welcoming": {},
+  "english_language": "Anglais",
+  "@english_language": {},
+  "french_language": "Français",
+  "@french_language": {},
   "my_job_subtitle": "Travail actuellement en CDI chez Numberly",
   "@my_job_subtitle": {},
   "my_job_title": "Ingénieur développeur mobile Flutter",
@@ -12,6 +16,8 @@
   "@my_name": {},
   "page_not_found": "Page inconnue",
   "@page_not_found": {},
+  "russian_language": "Russe",
+  "@russian_language": {},
   "thank_you": "Merci",
   "@thank_you": {}
 }

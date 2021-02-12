@@ -4,6 +4,10 @@
   "@contact_me": {},
   "detail_welcoming": "Know me better",
   "@detail_welcoming": {},
+  "english_language": "English",
+  "@english_language": {},
+  "french_language": "French",
+  "@french_language": {},
   "my_job_subtitle": "Currently working at Numberly",
   "@my_job_subtitle": {},
   "my_job_title": "Engineer mobile developer Flutter",
@@ -12,6 +16,8 @@
   "@my_name": {},
   "page_not_found": "Page not found",
   "@page_not_found": {},
+  "russian_language": "Russian",
+  "@russian_language": {},
   "thank_you": "Thank you",
   "@thank_you": {}
 }

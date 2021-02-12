@@ -23,10 +23,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "contact_me" : MessageLookupByLibrary.simpleMessage("Contact me on Linkedin\n"),
     "detail_welcoming" : MessageLookupByLibrary.simpleMessage("Know me better"),
+    "english_language" : MessageLookupByLibrary.simpleMessage("English"),
+    "french_language" : MessageLookupByLibrary.simpleMessage("French"),
     "my_job_subtitle" : MessageLookupByLibrary.simpleMessage("Currently working at Numberly"),
     "my_job_title" : MessageLookupByLibrary.simpleMessage("Engineer mobile developer Flutter"),
     "my_name" : MessageLookupByLibrary.simpleMessage("Dimitri Leurs"),
     "page_not_found" : MessageLookupByLibrary.simpleMessage("Page not found"),
+    "russian_language" : MessageLookupByLibrary.simpleMessage("Russian"),
     "thank_you" : MessageLookupByLibrary.simpleMessage("Thank you")
   };
 }
