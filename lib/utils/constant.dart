@@ -11,7 +11,3 @@ class Const {
 
   static const double mediumScreen = 840.0;
 }
-
-class AppColors {
-  static const Color primaryLight = Colors.blue;
-}

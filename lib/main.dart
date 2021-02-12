@@ -3,9 +3,16 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:personal_website/generated/l10n.dart';
 import 'package:personal_website/navigation/my_router_delegate.dart';
 import 'package:personal_website/navigation/route_information_parser.dart';
+import 'package:personal_website/ui/theme.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => AppThemeNotifier(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -19,18 +26,22 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Dimitri LEURS',
-      localizationsDelegates: [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      routerDelegate: _routerDelegate,
-      routeInformationParser: _routeInformationParser,
-      debugShowCheckedModeBanner: false,
+    return Consumer<AppThemeNotifier>(
+      builder: (context, theme, _) => MaterialApp.router(
+        title: 'Dimitri LEURS',
+        localizationsDelegates: [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        theme: theme.getTheme(),
+        //darkTheme: AppThemeNotifier.darkTheme,
+        supportedLocales: S.delegate.supportedLocales,
+        routerDelegate: _routerDelegate,
+        routeInformationParser: _routeInformationParser,
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }

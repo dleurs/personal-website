@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:personal_website/generated/l10n.dart';
+import 'package:personal_website/ui/theme.dart';
 import 'package:personal_website/utils/constant.dart';
+import 'package:provider/provider.dart';
 
 class MyAppBar {
   static List<Widget> buildActions({
@@ -10,6 +12,31 @@ class MyAppBar {
   }) {
     List<Widget> actions = <Widget>[];
     String intlCurrentLang = Intl.getCurrentLocale();
+    AppThemeNotifier theme = Provider.of<AppThemeNotifier>(context);
+    print("theme : " + theme.toString());
+
+    actions.add(
+      Padding(
+        padding: const EdgeInsets.only(
+            right: Const.mediumPadding, left: Const.mediumPadding),
+        child: Row(
+          children: [
+            Switch(
+              value: theme.isBlack(),
+              onChanged: (value) {
+                if (value) {
+                  theme.setDarkMode();
+                } else {
+                  theme.setLightMode();
+                }
+              },
+            ),
+            Icon(Icons.nightlight_round)
+          ],
+        ),
+      ),
+    );
+
     actions.add(PopupMenuButton<MenuIconLanguage>(
       icon: (intlCurrentLang == "fr")
           ? Image.asset('assets/images/uk-flag.jpg')
@@ -56,6 +83,7 @@ class MyAppBar {
         }).toList();
       },
     ));
+
     return actions;
   }
 }
