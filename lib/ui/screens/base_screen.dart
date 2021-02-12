@@ -4,9 +4,6 @@ import 'package:personal_website/utils/constant.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 abstract class BaseScreenState<T extends StatefulWidget> extends State<T> {
-  //@protected
-  //Color get backgroundColor => Theme.of(context).backgroundColor;
-
   @override
   void initState() {
     super.initState();
@@ -49,7 +46,6 @@ abstract class BaseScreenState<T extends StatefulWidget> extends State<T> {
       },
       child:  */
     return Scaffold(
-      //backgroundColor: this.backgroundColor,
       appBar: this.buildAppBar(context),
       body: this.buildScreen(context),
       bottomNavigationBar: this.buildBottomNavigationBar(context),
@@ -61,14 +57,9 @@ abstract class BaseScreenState<T extends StatefulWidget> extends State<T> {
   Widget buildScreen(BuildContext context) {
     //Returns the widget which is more appropriate for the screen size
     return LayoutBuilder(builder: (context, constraints) {
-      if (kIsWeb && constraints.maxWidth > Const.largeScreen) {
+      if (kIsWeb && constraints.maxWidth > Const.mediumScreen) {
         return buildLargeScreen(context);
-      } /* else if (constraints.maxWidth > 800 && constraints.maxWidth < 1200) {
-        //if medium screen not available, then return large screen
-        return mediumScreen ?? largeScreen;
-      }  */
-      else {
-        //if small screen implementation not available, then return large screen
+      } else {
         return buildSmallScreen(context);
       }
     });
