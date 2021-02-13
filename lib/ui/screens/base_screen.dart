@@ -58,7 +58,7 @@ abstract class BaseScreenState<T extends StatefulWidget> extends State<T> {
   Widget buildScreen(BuildContext context) {
     //Returns the widget which is more appropriate for the screen size
     return LayoutBuilder(builder: (context, constraints) {
-      if (kIsWeb && constraints.maxWidth > Const.mediumScreen) {
+      if (constraints.maxWidth > Const.mediumScreen) {
         return buildLargeScreen(context);
       } else {
         return buildSmallScreen(context);

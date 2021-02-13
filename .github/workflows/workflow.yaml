@@ -15,7 +15,7 @@ jobs:
         java-version: '12.x'
     - uses: subosito/flutter-action@v1
       with:
-        #flutter-version: '1.24.0-10.2.pre'
+        #flutter-version: '1.24.0-10.2.pre' '1.26.0-17.5.pre'
         channel: 'beta' # Currently you have to use beta channel for Flutter web.
     #- run: flutter upgrade # You also get the flutter version
     - run: flutter config --enable-web

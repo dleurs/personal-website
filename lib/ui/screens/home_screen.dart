@@ -33,10 +33,15 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
           style: Theme.of(context).textTheme.headline4,
         ),
       ),
-      SizedBox(height: 50),
-      ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: 400, maxHeight: 400),
-        child: Image.asset('assets/images/Dimitri_Leurs_Numberly.jpg'),
+      SizedBox(height: Const.largePadding),
+      Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: 400, maxHeight: 400),
+          child: Padding(
+            padding: const EdgeInsets.all(Const.smallPadding),
+            child: Image.asset('assets/images/Dimitri_Leurs_Numberly.jpg'),
+          ),
+        ),
       ),
     ];
   }
@@ -66,16 +71,23 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
         ),
       ),
       SizedBox(height: Const.mediumPadding),
-      GestureDetector(
-          onTap: _launchURL,
-          child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 100, maxHeight: 100),
-            child: Image.asset(
-                'assets/images/second_linkedin.jpg'), //Image.asset('assets/images/linkedin.jpg'),
-          )),
+      Center(
+        child: GestureDetector(
+            onTap: _launchURL,
+            child: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 100, maxHeight: 100),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset('assets/images/second_linkedin.jpg'),
+                ), //Image.asset('assets/images/linkedin.jpg'),
+              ),
+            )),
+      ),
       SizedBox(height: Const.largePadding),
       Center(
-        child: RaisedButton(
+        child: ElevatedButton(
           onPressed: () {
             (Router.of(context).routerDelegate as MyRouterDelegate)
                 .toDetailScreen();
@@ -93,32 +105,68 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
     ];
   }
 
+  List<Widget> fakeChapter(
+      BuildContext context, int numChapter, bool secondText) {
+    return [
+      Padding(
+        padding: const EdgeInsets.fromLTRB(Const.largePadding,
+            Const.smallPadding, Const.largePadding, Const.smallPadding),
+        child: Text(
+          "Lorem Ipsum " + numChapter.toString(),
+          style: Theme.of(context).textTheme.headline4,
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.fromLTRB(Const.mediumPadding,
+            Const.smallPadding, Const.mediumPadding, Const.smallPadding),
+        child: Text(
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+      ),
+      (secondText)
+          ? Padding(
+              padding: const EdgeInsets.fromLTRB(Const.mediumPadding,
+                  Const.smallPadding, Const.mediumPadding, Const.smallPadding),
+              child: Text(
+                  "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"))
+          : SizedBox()
+    ];
+  }
+
   @override
   Widget buildLargeScreen(BuildContext context) {
-    return Center(
-      child: ListView(
-          //mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(height: Const.largePadding),
-            Row(children: [
-              Expanded(
-                flex: 1,
-                child: Center(
-                  child: Column(
-                    children: nameAndPicture(context),
-                  ),
-                ),
-              ),
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Expanded(
+        flex: 1,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
               SizedBox(height: Const.largePadding),
-              Expanded(
-                flex: 1,
-                child: Center(
-                  child: Column(children: linkedinAndThank(context)),
-                ),
-              ),
-            ]),
+              ...nameAndPicture(context),
+              SizedBox(height: Const.largePadding),
+              ...linkedinAndThank(context),
+            ],
+          ),
+        ),
+      ),
+      SizedBox(height: Const.largePadding),
+      Expanded(
+        flex: 2,
+        child: SingleChildScrollView(
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            SizedBox(height: Const.largePadding),
+            SizedBox(height: Const.largePadding),
+            ...fakeChapter(context, 1, false),
+            SizedBox(height: Const.largePadding),
+            ...fakeChapter(context, 2, true),
+            SizedBox(height: Const.largePadding),
+            ...fakeChapter(context, 3, false),
+            SizedBox(height: Const.largePadding),
+            ...fakeChapter(context, 4, true),
           ]),
-    );
+        ),
+      ),
+    ]);
   }
 
   @override
@@ -131,6 +179,14 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
             ...nameAndPicture(context),
             SizedBox(height: Const.largePadding),
             ...linkedinAndThank(context),
+            SizedBox(height: Const.largePadding),
+            ...fakeChapter(context, 1, false),
+            SizedBox(height: Const.largePadding),
+            ...fakeChapter(context, 2, true),
+            SizedBox(height: Const.largePadding),
+            ...fakeChapter(context, 3, false),
+            SizedBox(height: Const.largePadding),
+            ...fakeChapter(context, 4, true),
           ]),
     );
   }
