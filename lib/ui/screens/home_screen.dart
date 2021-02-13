@@ -75,7 +75,7 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
         child: GestureDetector(
             onTap: _launchURL,
             child: FittedBox(
-              fit: BoxFit.fitWidth,
+              fit: BoxFit.contain,
               child: ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: 100, maxHeight: 100),
                 child: Padding(
@@ -132,6 +132,20 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
     ];
   }
 
+  List<Widget> allChapters() {
+    return [
+      ...fakeChapter(context, 1, false),
+      SizedBox(height: Const.largePadding),
+      ...fakeChapter(context, 2, true),
+      SizedBox(height: Const.largePadding),
+      ...fakeChapter(context, 3, false),
+      SizedBox(height: Const.largePadding),
+      ...fakeChapter(context, 4, true),
+      SizedBox(height: Const.largePadding),
+      ...fakeChapter(context, 5, true),
+    ];
+  }
+
   @override
   Widget buildLargeScreen(BuildContext context) {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -155,14 +169,8 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             SizedBox(height: Const.largePadding),
-            SizedBox(height: Const.largePadding),
-            ...fakeChapter(context, 1, false),
-            SizedBox(height: Const.largePadding),
-            ...fakeChapter(context, 2, true),
-            SizedBox(height: Const.largePadding),
-            ...fakeChapter(context, 3, false),
-            SizedBox(height: Const.largePadding),
-            ...fakeChapter(context, 4, true),
+            SizedBox(height: Const.smallPadding),
+            ...allChapters(),
           ]),
         ),
       ),
@@ -180,13 +188,7 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
             SizedBox(height: Const.largePadding),
             ...linkedinAndThank(context),
             SizedBox(height: Const.largePadding),
-            ...fakeChapter(context, 1, false),
-            SizedBox(height: Const.largePadding),
-            ...fakeChapter(context, 2, true),
-            SizedBox(height: Const.largePadding),
-            ...fakeChapter(context, 3, false),
-            SizedBox(height: Const.largePadding),
-            ...fakeChapter(context, 4, true),
+            ...allChapters(),
           ]),
     );
   }

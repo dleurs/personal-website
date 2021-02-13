@@ -15,6 +15,19 @@ class MyAppBar {
     AppThemeNotifier theme = Provider.of<AppThemeNotifier>(context);
     print("theme : " + theme.toString());
 
+    actions.add(Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            padding: const EdgeInsets.all(0.0),
+            icon: Icon(Icons.ac_unit_rounded),
+            iconSize: Const.actionNavBarIconSize * 0.6,
+            onPressed: () {},
+          ),
+          Text("Mail")
+        ]));
+
     actions.add(
       Padding(
         padding: const EdgeInsets.only(
@@ -31,7 +44,17 @@ class MyAppBar {
                 }
               },
             ),
-            Icon(Icons.nightlight_round)
+            IconButton(
+              padding: EdgeInsets.all(0.0),
+              icon: Icon(Icons.nightlight_round),
+              onPressed: () {
+                if (theme.isBlack()) {
+                  theme.setLightMode();
+                } else {
+                  theme.setDarkMode();
+                }
+              },
+            )
           ],
         ),
       ),

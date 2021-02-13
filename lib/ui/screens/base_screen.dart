@@ -93,6 +93,20 @@ abstract class BaseScreenState<T extends StatefulWidget> extends State<T> {
   ///
   Widget buildBottomNavigationBar(BuildContext context) {
     return null;
+    /* return BottomNavigationBar(
+      currentIndex: 0, // this will be set when a new tab is tapped
+      items: [
+        BottomNavigationBarItem(
+          icon: new Icon(Icons.home),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: new Icon(Icons.mail),
+          label: 'Messages',
+        ),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile')
+      ],
+    ); */
   }
 
   ///
