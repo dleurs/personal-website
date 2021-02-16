@@ -127,11 +127,7 @@ class MyAppBar {
     );
 
     actions.add(PopupMenuButton<MenuIconLanguage>(
-      icon: (intlCurrentLang == "fr")
-          ? Image.asset('assets/images/fr-flag.jpg')
-          : (intlCurrentLang == "ru")
-              ? Image.asset('assets/images/ru-flag.jpg')
-              : Image.asset('assets/images/uk-flag.jpg'),
+      icon: getFlag(intlCurrentLang),
       iconSize: Const.actionNavBarIconSize,
       onSelected: (menuLang) {
         setLanguage(menuLang.countryCode);
@@ -147,11 +143,6 @@ class MyAppBar {
                 child: Row(
                   children: [
                     Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 1,
-                        ),
-                      ),
                       child: ConstrainedBox(
                           constraints:
                               BoxConstraints(maxWidth: menuLang.iconSize),
@@ -197,7 +188,7 @@ List<MenuIconLanguage> listMenuLang = <MenuIconLanguage>[
   MenuIconLanguage(
       icon: Image.asset('assets/images/ru-flag.jpg'),
       countryCode: "ru",
-      countryLangName: "Русский "),
+      countryLangName: "Русский"),
   MenuIconLanguage(
       icon: Image.asset(
         'assets/images/fr-flag.jpg',
@@ -205,6 +196,13 @@ List<MenuIconLanguage> listMenuLang = <MenuIconLanguage>[
       countryCode: "fr",
       countryLangName: "Français"),
 ];
+
+Widget getFlag(String countryCode) {
+  for (MenuIconLanguage country in listMenuLang) {
+    if (country.countryCode == countryCode) return country.icon;
+  }
+  return SizedBox();
+}
 
 String getLangName(BuildContext context, String countryCode) {
   if (countryCode == "fr") {

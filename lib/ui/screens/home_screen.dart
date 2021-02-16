@@ -49,7 +49,6 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
 
   List<Widget> linkedinAndThank(BuildContext context) {
     return [
-      Icon(FlutterIconCom.linkedin_rect),
       Center(
         child: Text(
           S.of(context).my_job_title,
