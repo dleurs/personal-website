@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:personal_website/generated/l10n.dart';
 import 'package:personal_website/navigation/my_router_delegate.dart';
+import 'package:personal_website/ui/components/flutter_icon_com_icons.dart';
 import 'package:personal_website/ui/theme.dart';
 import 'package:personal_website/utils/constant.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MyAppBar {
   static List<Widget> buildActions({
@@ -37,9 +39,7 @@ class MyAppBar {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Flexible(
-                    child: theme.isBlack()
-                        ? Image.asset('assets/images/resume-and-cv-white.png')
-                        : Image.asset('assets/images/resume-and-cv-black.png'),
+                    child: Icon(FlutterIconCom.resume_and_cv),
                   ),
                   Flexible(
                     child: Text(
@@ -59,35 +59,45 @@ class MyAppBar {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Flexible(
-                    child: theme.isBlack()
-                        ? Image.asset('assets/images/resume-and-cv-white.png')
-                        : Image.asset('assets/images/resume-and-cv-black.png'),
+                    child: Icon(Icons.mobile_friendly_outlined),
                   ),
                   Flexible(
                     child: Text(
-                      "Resume",
+                      "Projects",
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ]),
           ),
           FlatButton(
-            onPressed: () {
-              (Router.of(context).routerDelegate as MyRouterDelegate)
-                  .toHomeScreen();
-            },
+            onPressed: () {},
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Flexible(
-                    child: theme.isBlack()
-                        ? Image.asset('assets/images/resume-and-cv-white.png')
-                        : Image.asset('assets/images/resume-and-cv-black.png'),
+                    child: Icon(FlutterIconCom.time_is_money_3_),
                   ),
                   Flexible(
                     child: Text(
-                      "Resume",
+                      "Time & Price",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ]),
+          ),
+          FlatButton(
+            onPressed: () {},
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Flexible(
+                    child: Icon(FlutterIconCom.conversation),
+                  ),
+                  Flexible(
+                    child: Text(
+                      "Contact me",
                       style: TextStyle(color: Colors.white),
                     ),
                   ),

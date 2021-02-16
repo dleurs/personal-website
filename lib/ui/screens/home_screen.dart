@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:personal_website/generated/l10n.dart';
 import 'package:personal_website/navigation/app_config.dart';
 import 'package:personal_website/navigation/my_router_delegate.dart';
+import 'package:personal_website/ui/components/flutter_icon_com_icons.dart';
 import 'package:personal_website/ui/screens/base_screen.dart';
 import 'package:personal_website/utils/constant.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -48,6 +49,7 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
 
   List<Widget> linkedinAndThank(BuildContext context) {
     return [
+      Icon(FlutterIconCom.linkedin_rect),
       Center(
         child: Text(
           S.of(context).my_job_title,

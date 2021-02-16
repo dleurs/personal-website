@@ -15,7 +15,7 @@ dependencies:
     sdk: flutter
   equatable: ^1.2.5
   flag: ^3.1.0
-  flutter_svg: ^0.19.2+1
+  #flutter_svg: ^0.19.2+1
   intl: ^0.16.1
   intl_utils: ^1.9.0
   provider: ^4.3.3
@@ -33,6 +33,11 @@ flutter:
 
   assets:
     - assets/images/
+
+  fonts:
+    - family: FlutterIconCom
+      fonts:
+        - asset: assets/icons/FlutterIconCom.ttf
 
 flutter_intl:
   main_locale: fr
