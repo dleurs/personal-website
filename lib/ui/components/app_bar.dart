@@ -3,6 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:personal_website/generated/l10n.dart';
 import 'package:personal_website/navigation/my_router_delegate.dart';
 import 'package:personal_website/ui/components/flutter_icon_com_icons.dart';
+import 'package:personal_website/ui/components/language_items.dart';
+import 'package:personal_website/ui/components/nav_items.dart';
 import 'package:personal_website/ui/theme.dart';
 import 'package:personal_website/utils/constant.dart';
 import 'package:provider/provider.dart';
@@ -12,100 +14,46 @@ class MyAppBar {
   static List<Widget> buildActions({
     @required BuildContext context,
     @required Function(String) setLanguage,
+    @required bool displayNavItems,
   }) {
     List<Widget> actions = <Widget>[];
     String intlCurrentLang = Intl.getCurrentLocale();
     AppThemeNotifier theme =
         Provider.of<AppThemeNotifier>(context, listen: false);
-    print("theme : " + theme.toString());
+    //print("theme : " + theme.toString());
 
-    actions.add(SizedBox(
-      width:
-          110, // Qpproximatly the size of Flag + switch to center other elements
-    ));
-
-    actions.add(Expanded(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          FlatButton(
-            onPressed: () {
-              (Router.of(context).routerDelegate as MyRouterDelegate)
-                  .toHomeScreen();
-            },
-            color: theme.getTheme().focusColor,
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Flexible(
-                    child: Icon(FlutterIconCom.resume_and_cv),
-                  ),
-                  Flexible(
-                    child: Text(
-                      "Resume",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ]),
-          ),
-          FlatButton(
-            onPressed: () {
-              (Router.of(context).routerDelegate as MyRouterDelegate)
-                  .toHomeScreen();
-            },
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Flexible(
-                    child: Icon(Icons.mobile_friendly_outlined),
-                  ),
-                  Flexible(
-                    child: Text(
-                      "Projects",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ]),
-          ),
-          FlatButton(
-            onPressed: () {},
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Flexible(
-                    child: Icon(FlutterIconCom.time_is_money_3_),
-                  ),
-                  Flexible(
-                    child: Text(
-                      "Time & Price",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ]),
-          ),
-          FlatButton(
-            onPressed: () {},
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Flexible(
-                    child: Icon(FlutterIconCom.conversation),
-                  ),
-                  Flexible(
-                    child: Text(
-                      "Contact me",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ]),
-          ),
-        ],
-      ),
-    ));
+    if (displayNavItems) {
+      actions.add(SizedBox(
+        width:
+            110, // Qpproximatly the size of Flag + switch to center other elements
+      ));
+      actions.add(Expanded(
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: NavItems.navItems.map((NavItem navItem) {
+              return FlatButton(
+                onPressed: () {
+                  navItem.onPressed(context);
+                },
+                //color: theme.getTheme().focusColor,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Flexible(
+                        child: navItem.icon,
+                      ),
+                      Flexible(
+                        child: Text(
+                          NavItems.getNavItemName(context, navItem.nameCode),
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ]),
+              );
+            }).toList()),
+      ));
+    }
 
     actions.add(
       Row(
@@ -126,16 +74,16 @@ class MyAppBar {
       ),
     );
 
-    actions.add(PopupMenuButton<MenuIconLanguage>(
-      icon: getFlag(intlCurrentLang),
+    actions.add(PopupMenuButton<LanguageItem>(
+      icon: LanguageItems.getFlag(intlCurrentLang),
       iconSize: Const.actionNavBarIconSize,
       onSelected: (menuLang) {
         setLanguage(menuLang.countryCode);
       },
       itemBuilder: (BuildContext context) {
-        return listMenuLang.map((MenuIconLanguage menuLang) {
-          return PopupMenuItem<MenuIconLanguage>(
-            value: menuLang,
+        return LanguageItems.navItems.map((LanguageItem navItem) {
+          return PopupMenuItem<LanguageItem>(
+            value: navItem,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: FittedBox(
@@ -145,15 +93,16 @@ class MyAppBar {
                     Container(
                       child: ConstrainedBox(
                           constraints:
-                              BoxConstraints(maxWidth: menuLang.iconSize),
-                          child: menuLang.icon),
+                              BoxConstraints(maxWidth: navItem.iconSize),
+                          child: navItem.icon),
                     ),
                     SizedBox(
                       width: Const.smallPadding,
                     ),
-                    Text(getLangName(context, menuLang.countryCode)),
-                    (intlCurrentLang != menuLang.countryCode)
-                        ? Text(" - " + menuLang.countryLangName)
+                    Text(LanguageItems.getLangName(
+                        context, navItem.countryCode)),
+                    (intlCurrentLang != navItem.countryCode)
+                        ? Text(" - " + navItem.countryLangName)
                         : SizedBox(),
                   ],
                 ),
@@ -166,51 +115,4 @@ class MyAppBar {
 
     return actions;
   }
-}
-
-class MenuIconLanguage {
-  Widget icon;
-  double iconSize;
-  String countryCode;
-  String countryLangName;
-  MenuIconLanguage(
-      {@required this.icon,
-      this.iconSize = Const.actionNavBarIconSize,
-      @required this.countryCode,
-      @required this.countryLangName});
-}
-
-List<MenuIconLanguage> listMenuLang = <MenuIconLanguage>[
-  MenuIconLanguage(
-      icon: Image.asset('assets/images/uk-flag.jpg'),
-      countryCode: "en",
-      countryLangName: "English"),
-  MenuIconLanguage(
-      icon: Image.asset('assets/images/ru-flag.jpg'),
-      countryCode: "ru",
-      countryLangName: "Русский"),
-  MenuIconLanguage(
-      icon: Image.asset(
-        'assets/images/fr-flag.jpg',
-      ),
-      countryCode: "fr",
-      countryLangName: "Français"),
-];
-
-Widget getFlag(String countryCode) {
-  for (MenuIconLanguage country in listMenuLang) {
-    if (country.countryCode == countryCode) return country.icon;
-  }
-  return SizedBox();
-}
-
-String getLangName(BuildContext context, String countryCode) {
-  if (countryCode == "fr") {
-    return S.of(context).french_language;
-  } else if (countryCode == "en") {
-    return S.of(context).english_language;
-  } else if (countryCode == "ru") {
-    return S.of(context).russian_language;
-  } else
-    return "Unknown";
 }

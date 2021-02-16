@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/generated/l10n.dart';
 import 'package:personal_website/ui/components/app_bar.dart';
+import 'package:personal_website/ui/components/bottom_nav_bar.dart';
 import 'package:personal_website/utils/constant.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -81,10 +82,18 @@ abstract class BaseScreenState<T extends StatefulWidget> extends State<T> {
   /// Override this method in each screen that needs a specific one
   ///
   PreferredSizeWidget buildAppBar(BuildContext context) {
-    return AppBar(
-      actions:
-          MyAppBar.buildActions(context: context, setLanguage: setLanguage),
-    );
+    double width = MediaQuery.of(context).size.width;
+    if (width > Const.mediumScreen) {
+      return AppBar(
+        actions: MyAppBar.buildActions(
+            context: context, setLanguage: setLanguage, displayNavItems: true),
+      );
+    } else {
+      return AppBar(
+        actions: MyAppBar.buildActions(
+            context: context, setLanguage: setLanguage, displayNavItems: false),
+      );
+    }
   }
 
   ///
@@ -92,21 +101,13 @@ abstract class BaseScreenState<T extends StatefulWidget> extends State<T> {
   /// Override this method in each screen that needs a specific one
   ///
   Widget buildBottomNavigationBar(BuildContext context) {
-    return null;
-    /* return BottomNavigationBar(
-      currentIndex: 0, // this will be set when a new tab is tapped
-      items: [
-        BottomNavigationBarItem(
-          icon: new Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: new Icon(Icons.mail),
-          label: 'Messages',
-        ),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile')
-      ],
-    ); */
+    return LayoutBuilder(builder: (context, constraints) {
+      if (constraints.maxWidth > Const.mediumScreen) {
+        return SizedBox();
+      } else {
+        return BottomNavBar();
+      }
+    });
   }
 
   ///

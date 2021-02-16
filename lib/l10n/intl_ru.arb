@@ -2,6 +2,8 @@
   "@@locale": "ru",
   "contact_me": "Свяжитесь со мной в Linkedin",
   "@contact_me": {},
+  "contact_me_nav_item": "Cвяжитесь со мной ",
+  "@contact_me_nav_item": {},
   "detail_welcoming": "Узнай больше обо мне",
   "@detail_welcoming": {},
   "english_language": "Английский",
@@ -16,8 +18,14 @@
   "@my_name": {},
   "page_not_found": "Страница не найдена",
   "@page_not_found": {},
+  "projects_nav_item": "Проекты",
+  "@projects_nav_item": {},
+  "resume_nav_item": "Pезюме",
+  "@resume_nav_item": {},
   "russian_language": "Русский",
   "@russian_language": {},
   "thank_you": "Спасибо",
-  "@thank_you": {}
+  "@thank_you": {},
+  "time_money_nav_item": "Время и деньги",
+  "@time_money_nav_item": {}
 }

@@ -45,6 +45,16 @@ class S {
     );
   }
 
+  /// `Contactez moi`
+  String get contact_me_nav_item {
+    return Intl.message(
+      'Contactez moi',
+      name: 'contact_me_nav_item',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Apprenez-en plus sur moi`
   String get detail_welcoming {
     return Intl.message(
@@ -115,6 +125,26 @@ class S {
     );
   }
 
+  /// `Projets`
+  String get projects_nav_item {
+    return Intl.message(
+      'Projets',
+      name: 'projects_nav_item',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CV`
+  String get resume_nav_item {
+    return Intl.message(
+      'CV',
+      name: 'resume_nav_item',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Russe`
   String get russian_language {
     return Intl.message(
@@ -130,6 +160,16 @@ class S {
     return Intl.message(
       'Merci',
       name: 'thank_you',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Temps & argent`
+  String get time_money_nav_item {
+    return Intl.message(
+      'Temps & argent',
+      name: 'time_money_nav_item',
       desc: '',
       args: [],
     );

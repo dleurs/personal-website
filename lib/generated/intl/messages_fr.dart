@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "contact_me" : MessageLookupByLibrary.simpleMessage("Contactez moi sur Linkedin"),
+    "contact_me_nav_item" : MessageLookupByLibrary.simpleMessage("Contactez moi"),
     "detail_welcoming" : MessageLookupByLibrary.simpleMessage("Apprenez-en plus sur moi"),
     "english_language" : MessageLookupByLibrary.simpleMessage("Anglais"),
     "french_language" : MessageLookupByLibrary.simpleMessage("Français"),
@@ -29,7 +30,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "my_job_title" : MessageLookupByLibrary.simpleMessage("Ingénieur développeur mobile Flutter"),
     "my_name" : MessageLookupByLibrary.simpleMessage("Dimitri Leurs"),
     "page_not_found" : MessageLookupByLibrary.simpleMessage("Page inconnue"),
+    "projects_nav_item" : MessageLookupByLibrary.simpleMessage("Projets"),
+    "resume_nav_item" : MessageLookupByLibrary.simpleMessage("CV"),
     "russian_language" : MessageLookupByLibrary.simpleMessage("Russe"),
-    "thank_you" : MessageLookupByLibrary.simpleMessage("Merci")
+    "thank_you" : MessageLookupByLibrary.simpleMessage("Merci"),
+    "time_money_nav_item" : MessageLookupByLibrary.simpleMessage("Temps & argent")
   };
 }
