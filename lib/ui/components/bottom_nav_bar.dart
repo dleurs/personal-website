@@ -20,11 +20,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
         unselectedLabelStyle: TextStyle(
           color: theme.getTheme().hintColor,
         ),
+        unselectedFontSize: 14.0,
+        showUnselectedLabels: true,
         selectedItemColor: theme.getTheme().accentColor,
         selectedLabelStyle: TextStyle(
           color: theme.getTheme().accentColor,
         ),
-        showUnselectedLabels: true,
+        selectedFontSize: 14.0,
+
         //backgroundColor: theme.getTheme().accentColor,
         //type: BottomNavigationBarType.fixed,
         items: NavItems.navItems.map((NavItem navItem) {

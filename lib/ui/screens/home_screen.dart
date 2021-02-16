@@ -181,9 +181,10 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
   @override
   Widget buildSmallScreen(BuildContext context) {
     return Center(
-      child: ListView(
+      child: NotificationListener<ScrollEndNotification>(
+        child: SingleChildScrollView(
           //mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          child: Column(children: [
             SizedBox(height: Const.largePadding),
             ...nameAndPicture(context),
             SizedBox(height: Const.largePadding),
@@ -191,6 +192,11 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
             SizedBox(height: Const.largePadding),
             ...allChapters(),
           ]),
+        ),
+        onNotification: (notification) {
+          print(notification.metrics.pixels);
+        },
+      ),
     );
   }
 }
