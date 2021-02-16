@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:personal_website/generated/l10n.dart';
+import 'package:personal_website/navigation/my_router_delegate.dart';
 import 'package:personal_website/ui/theme.dart';
 import 'package:personal_website/utils/constant.dart';
 import 'package:provider/provider.dart';
@@ -12,21 +13,89 @@ class MyAppBar {
   }) {
     List<Widget> actions = <Widget>[];
     String intlCurrentLang = Intl.getCurrentLocale();
-    AppThemeNotifier theme = Provider.of<AppThemeNotifier>(context);
+    AppThemeNotifier theme =
+        Provider.of<AppThemeNotifier>(context, listen: false);
     print("theme : " + theme.toString());
 
-/*     actions.add(Column(
+    actions.add(SizedBox(
+      width:
+          110, // Qpproximatly the size of Flag + switch to center other elements
+    ));
+
+    actions.add(Expanded(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
         children: [
-          IconButton(
-            padding: const EdgeInsets.all(0.0),
-            icon: Icon(Icons.ac_unit_rounded),
-            iconSize: Const.actionNavBarIconSize * 0.6,
-            onPressed: () {},
+          FlatButton(
+            onPressed: () {
+              (Router.of(context).routerDelegate as MyRouterDelegate)
+                  .toHomeScreen();
+            },
+            color: theme.getTheme().focusColor,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Flexible(
+                    child: theme.isBlack()
+                        ? Image.asset('assets/images/resume-and-cv-white.png')
+                        : Image.asset('assets/images/resume-and-cv-black.png'),
+                  ),
+                  Flexible(
+                    child: Text(
+                      "Resume",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ]),
           ),
-          Text("Mail")
-        ])); */
+          FlatButton(
+            onPressed: () {
+              (Router.of(context).routerDelegate as MyRouterDelegate)
+                  .toHomeScreen();
+            },
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Flexible(
+                    child: theme.isBlack()
+                        ? Image.asset('assets/images/resume-and-cv-white.png')
+                        : Image.asset('assets/images/resume-and-cv-black.png'),
+                  ),
+                  Flexible(
+                    child: Text(
+                      "Resume",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ]),
+          ),
+          FlatButton(
+            onPressed: () {
+              (Router.of(context).routerDelegate as MyRouterDelegate)
+                  .toHomeScreen();
+            },
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Flexible(
+                    child: theme.isBlack()
+                        ? Image.asset('assets/images/resume-and-cv-white.png')
+                        : Image.asset('assets/images/resume-and-cv-black.png'),
+                  ),
+                  Flexible(
+                    child: Text(
+                      "Resume",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ]),
+          ),
+        ],
+      ),
+    ));
 
     actions.add(
       Row(
