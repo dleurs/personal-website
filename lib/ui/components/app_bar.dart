@@ -15,7 +15,7 @@ class MyAppBar {
     AppThemeNotifier theme = Provider.of<AppThemeNotifier>(context);
     print("theme : " + theme.toString());
 
-    actions.add(Column(
+/*     actions.add(Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -26,43 +26,30 @@ class MyAppBar {
             onPressed: () {},
           ),
           Text("Mail")
-        ]));
+        ])); */
 
     actions.add(
-      Padding(
-        padding: const EdgeInsets.only(
-            right: Const.mediumPadding, left: Const.mediumPadding),
-        child: Row(
-          children: [
-            Switch(
-              value: theme.isBlack(),
-              onChanged: (value) {
-                if (value) {
-                  theme.setDarkMode();
-                } else {
-                  theme.setLightMode();
-                }
-              },
-            ),
-            IconButton(
-              padding: EdgeInsets.all(0.0),
-              icon: Icon(Icons.nightlight_round),
-              onPressed: () {
-                if (theme.isBlack()) {
-                  theme.setLightMode();
-                } else {
-                  theme.setDarkMode();
-                }
-              },
-            )
-          ],
-        ),
+      Row(
+        children: [
+          Switch(
+            value: theme.isBlack(),
+            onChanged: (value) {
+              if (value) {
+                theme.setDarkMode();
+              } else {
+                theme.setLightMode();
+              }
+            },
+            inactiveThumbImage: AssetImage('assets/images/moon.png'),
+            activeThumbImage: AssetImage('assets/images/moon.png'),
+          ),
+        ],
       ),
     );
 
     actions.add(PopupMenuButton<MenuIconLanguage>(
       icon: (intlCurrentLang == "fr")
-          ? Image.asset('assets/images/uk-flag.jpg')
+          ? Image.asset('assets/images/fr-flag.jpg')
           : (intlCurrentLang == "ru")
               ? Image.asset('assets/images/ru-flag.jpg')
               : Image.asset('assets/images/uk-flag.jpg'),

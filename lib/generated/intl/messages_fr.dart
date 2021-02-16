@@ -25,7 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "detail_welcoming" : MessageLookupByLibrary.simpleMessage("Apprenez-en plus sur moi"),
     "english_language" : MessageLookupByLibrary.simpleMessage("Anglais"),
     "french_language" : MessageLookupByLibrary.simpleMessage("Français"),
-    "my_job_subtitle" : MessageLookupByLibrary.simpleMessage("Travail actuellement en CDI chez Numberly"),
+    "my_job_subtitle" : MessageLookupByLibrary.simpleMessage("Travail actuellement chez Numberly"),
     "my_job_title" : MessageLookupByLibrary.simpleMessage("Ingénieur développeur mobile Flutter"),
     "my_name" : MessageLookupByLibrary.simpleMessage("Dimitri Leurs"),
     "page_not_found" : MessageLookupByLibrary.simpleMessage("Page inconnue"),

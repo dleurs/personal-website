@@ -75,10 +75,10 @@ class S {
     );
   }
 
-  /// `Travail actuellement en CDI chez Numberly`
+  /// `Travail actuellement chez Numberly`
   String get my_job_subtitle {
     return Intl.message(
-      'Travail actuellement en CDI chez Numberly',
+      'Travail actuellement chez Numberly',
       name: 'my_job_subtitle',
       desc: '',
       args: [],
