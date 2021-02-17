@@ -84,7 +84,9 @@ abstract class BaseScreenState<T extends StatefulWidget> extends State<T> {
   PreferredSizeWidget buildAppBar(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return AppBar(
-      title: Text("Dimitri Leurs"),
+      title: Text(
+        S.of(context).my_name,
+      ),
       actions: MyAppBar.buildActions(
         context: context,
         setLanguage: setLanguage,

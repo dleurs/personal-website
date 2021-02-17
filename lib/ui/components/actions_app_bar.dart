@@ -26,7 +26,7 @@ class MyAppBar {
     if (displayNavItems) {
       actions.add(Padding(
         padding: EdgeInsets.only(
-            right: screenWidth * (screenWidth * 0.00023 - 0.08)),
+            right: screenWidth * (screenWidth * 0.0002192 - 0.0925)),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: NavItems.navItems.map((NavItem navItem) {
