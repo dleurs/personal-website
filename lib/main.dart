@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:personal_website/generated/l10n.dart';
+import 'package:personal_website/models/scroll_home_screen.dart';
 import 'package:personal_website/navigation/my_router_delegate.dart';
 import 'package:personal_website/navigation/route_information_parser.dart';
 import 'package:personal_website/ui/theme.dart';
@@ -8,8 +9,15 @@ import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => AppThemeNotifier(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AppThemeNotifier>(
+          create: (context) => AppThemeNotifier(),
+        ),
+        ChangeNotifierProvider<ScrollHomeScreen>(
+          create: (context) => ScrollHomeScreen(metricsPixel: 0.0),
+        ),
+      ],
       child: MyApp(),
     ),
   );

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/generated/l10n.dart';
+import 'package:personal_website/models/scroll_home_screen.dart';
 import 'package:personal_website/navigation/app_config.dart';
 import 'package:personal_website/navigation/my_router_delegate.dart';
-import 'package:personal_website/ui/components/flutter_icon_com_icons.dart';
+import 'package:personal_website/ui/components/bottom_nav_bar.dart';
 import 'package:personal_website/ui/screens/base_screen.dart';
 import 'package:personal_website/utils/constant.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,6 +19,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends BaseScreenState<HomeScreen> {
+  ScrollController scrollController;
+  GlobalKey keyScrollResume = GlobalKey();
+  GlobalKey keyScrollProjects = GlobalKey();
+  GlobalKey keyScrollTimeMoney = GlobalKey();
+  GlobalKey keyScrollContactMe = GlobalKey();
+
   _launchURL() async {
     const url = 'https://www.linkedin.com/in/dimitri-leurs-666733130/';
     if (await canLaunch(url)) {
@@ -24,6 +32,33 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
     } else {
       throw 'Could not launch $url';
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    scrollController = ScrollController();
+  }
+
+  void pressFirstNavItem() {
+    print("Hello");
+    scrollController.position.ensureVisible(
+      keyScrollResume.currentContext.findRenderObject(),
+      alignment:
+          0.1, // How far into view the item should be scrolled (between 0 and 1).
+      duration: const Duration(milliseconds: 600),
+    );
+  }
+
+  @override
+  Widget buildBottomNavigationBar(BuildContext context) {
+    return LayoutBuilder(builder: (context, constraints) {
+      if (constraints.maxWidth > Const.mediumScreen) {
+        return SizedBox();
+      } else {
+        return BottomNavBar(pressFirstNavItem: pressFirstNavItem);
+      }
+    });
   }
 
   List<Widget> nameAndPicture(BuildContext context) {
@@ -107,13 +142,17 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
   }
 
   List<Widget> fakeChapter(
-      BuildContext context, int numChapter, bool secondText) {
+      {@required BuildContext context,
+      @required GlobalKey globalKey,
+      @required String title,
+      @required bool secondText}) {
     return [
       Padding(
         padding: const EdgeInsets.fromLTRB(Const.largePadding,
             Const.smallPadding, Const.largePadding, Const.smallPadding),
         child: Text(
-          "Lorem Ipsum " + numChapter.toString(),
+          title,
+          key: globalKey,
           style: Theme.of(context).textTheme.headline4,
         ),
       ),
@@ -135,15 +174,29 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
 
   List<Widget> allChapters() {
     return [
-      ...fakeChapter(context, 1, false),
+      ...fakeChapter(
+          context: context,
+          title: S.of(context).resume_nav_item,
+          globalKey: keyScrollResume,
+          secondText: false),
       SizedBox(height: Const.largePadding),
-      ...fakeChapter(context, 2, true),
+      ...fakeChapter(
+          context: context,
+          title: S.of(context).projects_nav_item,
+          globalKey: keyScrollProjects,
+          secondText: false),
       SizedBox(height: Const.largePadding),
-      ...fakeChapter(context, 3, false),
+      ...fakeChapter(
+          context: context,
+          title: S.of(context).time_money_nav_item,
+          globalKey: keyScrollTimeMoney,
+          secondText: false),
       SizedBox(height: Const.largePadding),
-      ...fakeChapter(context, 4, true),
-      SizedBox(height: Const.largePadding),
-      ...fakeChapter(context, 5, true),
+      ...fakeChapter(
+          context: context,
+          title: S.of(context).contact_me_nav_item,
+          globalKey: keyScrollContactMe,
+          secondText: false),
     ];
   }
 
@@ -180,21 +233,30 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
 
   @override
   Widget buildSmallScreen(BuildContext context) {
+    ScrollHomeScreen scrollHomeScreen = Provider.of<ScrollHomeScreen>(context);
+    print(scrollHomeScreen);
     return Center(
       child: NotificationListener<ScrollEndNotification>(
         child: SingleChildScrollView(
           //mainAxisAlignment: MainAxisAlignment.center,
+          controller: scrollController,
           child: Column(children: [
             SizedBox(height: Const.largePadding),
             ...nameAndPicture(context),
             SizedBox(height: Const.largePadding),
             ...linkedinAndThank(context),
-            SizedBox(height: Const.largePadding),
+            //SizedBox(height: Const.largePadding),
             ...allChapters(),
+            ElevatedButton(
+                onPressed: () {
+                  pressFirstNavItem();
+                },
+                child: Text("Scroll"))
           ]),
         ),
         onNotification: (notification) {
           print(notification.metrics.pixels);
+          scrollHomeScreen.updateMetricPixel(notification.metrics.pixels);
         },
       ),
     );

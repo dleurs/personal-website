@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:personal_website/generated/l10n.dart';
-import 'package:personal_website/navigation/my_router_delegate.dart';
-import 'package:personal_website/ui/components/flutter_icon_com_icons.dart';
-import 'package:personal_website/ui/components/language_items.dart';
-import 'package:personal_website/ui/components/nav_items.dart';
+import 'package:personal_website/models/language_items.dart';
+import 'package:personal_website/models/nav_items.dart';
 import 'package:personal_website/ui/theme.dart';
 import 'package:personal_website/utils/constant.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class MyAppBar {
   static List<Widget> buildActions({

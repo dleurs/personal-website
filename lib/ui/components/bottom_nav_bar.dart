@@ -1,30 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:personal_website/ui/components/language_items.dart';
-import 'package:personal_website/ui/components/nav_items.dart';
+import 'package:personal_website/models/nav_items.dart';
 import 'package:personal_website/ui/theme.dart';
 import 'package:provider/provider.dart';
 
-class BottomNavBar extends StatefulWidget {
-  @override
-  _BottomNavBarState createState() => _BottomNavBarState();
-}
+class BottomNavBar extends StatelessWidget {
+  final Function() pressFirstNavItem;
+  BottomNavBar({@required this.pressFirstNavItem});
 
-class _BottomNavBarState extends State<BottomNavBar> {
+  void Function(int index) callCallback() {
+    return (index) {
+      pressFirstNavItem();
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     AppThemeNotifier theme =
         Provider.of<AppThemeNotifier>(context, listen: false);
     return BottomNavigationBar(
         currentIndex: 0, // this will be set when a new tab is tapped
-        unselectedItemColor: theme.getTheme().hintColor,
+        onTap: callCallback(),
+        unselectedItemColor: theme?.getTheme()?.hintColor ?? Colors.grey,
         unselectedLabelStyle: TextStyle(
-          color: theme.getTheme().hintColor,
+          color: theme?.getTheme()?.hintColor ?? Colors.grey,
         ),
         unselectedFontSize: 14.0,
         showUnselectedLabels: true,
-        selectedItemColor: theme.getTheme().accentColor,
+        selectedItemColor: theme?.getTheme()?.accentColor ?? Colors.blue,
         selectedLabelStyle: TextStyle(
-          color: theme.getTheme().accentColor,
+          color: theme?.getTheme()?.accentColor ?? Colors.blue,
         ),
         selectedFontSize: 14.0,
 

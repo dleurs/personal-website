@@ -3,7 +3,6 @@ import 'package:personal_website/generated/l10n.dart';
 import 'package:personal_website/ui/components/actions_app_bar.dart';
 import 'package:personal_website/ui/components/bottom_nav_bar.dart';
 import 'package:personal_website/utils/constant.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 abstract class BaseScreenState<T extends StatefulWidget> extends State<T> {
   @override
@@ -100,13 +99,7 @@ abstract class BaseScreenState<T extends StatefulWidget> extends State<T> {
   /// Override this method in each screen that needs a specific one
   ///
   Widget buildBottomNavigationBar(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      if (constraints.maxWidth > Const.mediumScreen) {
-        return SizedBox();
-      } else {
-        return BottomNavBar();
-      }
-    });
+    return null;
   }
 
   ///
