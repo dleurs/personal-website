@@ -20,36 +20,38 @@ class MyAppBar {
     String intlCurrentLang = Intl.getCurrentLocale();
     AppThemeNotifier theme =
         Provider.of<AppThemeNotifier>(context, listen: false);
+    double screenWidth = MediaQuery.of(context).size.width;
     //print("theme : " + theme.toString());
 
     if (displayNavItems) {
-      actions.add(SizedBox(
-        width:
-            110, // Qpproximatly the size of Flag + switch to center other elements
-      ));
-      actions.add(Expanded(
+      actions.add(Padding(
+        padding: EdgeInsets.only(
+            right: screenWidth * (screenWidth * 0.00023 - 0.08)),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: NavItems.navItems.map((NavItem navItem) {
-              return FlatButton(
-                onPressed: () {
-                  navItem.onPressed(context);
-                },
-                //color: theme.getTheme().focusColor,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Flexible(
-                        child: navItem.icon,
-                      ),
-                      Flexible(
-                        child: Text(
-                          NavItems.getNavItemName(context, navItem.nameCode),
-                          style: TextStyle(color: Colors.white),
+              return Padding(
+                padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+                child: FlatButton(
+                  onPressed: () {
+                    navItem.onPressed(context);
+                  },
+                  //color: theme.getTheme().focusColor,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Flexible(
+                          child: navItem.icon,
                         ),
-                      ),
-                    ]),
+                        Flexible(
+                          child: Text(
+                            NavItems.getNavItemName(context, navItem.nameCode),
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ]),
+                ),
               );
             }).toList()),
       ));

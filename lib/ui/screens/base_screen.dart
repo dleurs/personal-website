@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/generated/l10n.dart';
-import 'package:personal_website/ui/components/app_bar.dart';
+import 'package:personal_website/ui/components/actions_app_bar.dart';
 import 'package:personal_website/ui/components/bottom_nav_bar.dart';
 import 'package:personal_website/utils/constant.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -83,17 +83,14 @@ abstract class BaseScreenState<T extends StatefulWidget> extends State<T> {
   ///
   PreferredSizeWidget buildAppBar(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    if (width > Const.mediumScreen) {
-      return AppBar(
-        actions: MyAppBar.buildActions(
-            context: context, setLanguage: setLanguage, displayNavItems: true),
-      );
-    } else {
-      return AppBar(
-        actions: MyAppBar.buildActions(
-            context: context, setLanguage: setLanguage, displayNavItems: false),
-      );
-    }
+    return AppBar(
+      title: Text("Dimitri Leurs"),
+      actions: MyAppBar.buildActions(
+        context: context,
+        setLanguage: setLanguage,
+        displayNavItems: (width > Const.mediumScreen),
+      ),
+    );
   }
 
   ///
