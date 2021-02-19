@@ -5,6 +5,7 @@ import 'package:personal_website/navigation/app_config.dart';
 import 'package:personal_website/navigation/my_router_delegate.dart';
 import 'package:personal_website/ui/components/actions_app_bar.dart';
 import 'package:personal_website/ui/components/bottom_nav_bar.dart';
+import 'package:personal_website/ui/components/scroll_list_with_nav_focus.dart';
 import 'package:personal_website/ui/screens/base_screen.dart';
 import 'package:personal_website/utils/constant.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +31,7 @@ class HomeScreenProvided extends StatefulWidget {
 }
 
 class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
-  ScrollController _scrollController;
+  ScrollController scrollController;
   GlobalKey keyScrollResume = GlobalKey();
   GlobalKey keyScrollProjects = GlobalKey();
   GlobalKey keyScrollTimeMoney = GlobalKey();
@@ -47,34 +48,34 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
 
   @override
   void initState() {
-    _scrollController = ScrollController();
+    scrollController = ScrollController();
     super.initState();
   }
 
   void scrollNavItem(int index) {
     if (index == 0) {
-      _scrollController.position.ensureVisible(
+      scrollController.position.ensureVisible(
         keyScrollResume.currentContext.findRenderObject(),
         alignment:
             0.1, // How far into view the item should be scrolled (between 0 and 1).
         duration: const Duration(milliseconds: 600),
       );
     } else if (index == 1) {
-      _scrollController.position.ensureVisible(
+      scrollController.position.ensureVisible(
         keyScrollProjects.currentContext.findRenderObject(),
         alignment:
             0.1, // How far into view the item should be scrolled (between 0 and 1).
         duration: const Duration(milliseconds: 600),
       );
     } else if (index == 2) {
-      _scrollController.position.ensureVisible(
+      scrollController.position.ensureVisible(
         keyScrollTimeMoney.currentContext.findRenderObject(),
         alignment:
             0.1, // How far into view the item should be scrolled (between 0 and 1).
         duration: const Duration(milliseconds: 600),
       );
     } else if (index == 3) {
-      _scrollController.position.ensureVisible(
+      scrollController.position.ensureVisible(
         keyScrollContactMe.currentContext.findRenderObject(),
         alignment:
             0.1, // How far into view the item should be scrolled (between 0 and 1).
@@ -179,11 +180,11 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
     ];
   }
 
-  List<Widget> fakeChapter(
-      {@required BuildContext context,
-      @required GlobalKey globalKey,
-      @required String title,
-      @required bool secondText}) {
+  List<Widget> fakeChapter({
+    @required BuildContext context,
+    @required GlobalKey globalKey,
+    @required String title,
+  }) {
     return [
       Padding(
         padding: const EdgeInsets.fromLTRB(Const.largePadding,
@@ -194,47 +195,53 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
           style: Theme.of(context).textTheme.headline4,
         ),
       ),
+      ...dummyText(),
+      ...dummyText(),
+      ...dummyText(),
+    ];
+  }
+
+  List<Widget> dummyText() {
+    return [
       Padding(
         padding: const EdgeInsets.fromLTRB(Const.mediumPadding,
             Const.smallPadding, Const.mediumPadding, Const.smallPadding),
         child: Text(
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
       ),
-      (secondText)
-          ? Padding(
-              padding: const EdgeInsets.fromLTRB(Const.mediumPadding,
-                  Const.smallPadding, Const.mediumPadding, Const.smallPadding),
-              child: Text(
-                  "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"))
-          : SizedBox()
+      Padding(
+          padding: const EdgeInsets.fromLTRB(Const.mediumPadding,
+              Const.smallPadding, Const.mediumPadding, Const.smallPadding),
+          child: Text(
+              "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"))
     ];
   }
 
   List<Widget> allChapters() {
     return [
       ...fakeChapter(
-          context: context,
-          title: S.of(context).resume_nav_item,
-          globalKey: keyScrollResume,
-          secondText: true),
+        context: context,
+        title: S.of(context).resume_nav_item,
+        globalKey: keyScrollResume,
+      ),
       SizedBox(height: Const.largePadding),
       ...fakeChapter(
-          context: context,
-          title: S.of(context).projects_nav_item,
-          globalKey: keyScrollProjects,
-          secondText: true),
+        context: context,
+        title: S.of(context).projects_nav_item,
+        globalKey: keyScrollProjects,
+      ),
       SizedBox(height: Const.largePadding),
       ...fakeChapter(
-          context: context,
-          title: S.of(context).time_money_nav_item,
-          globalKey: keyScrollTimeMoney,
-          secondText: true),
+        context: context,
+        title: S.of(context).time_money_nav_item,
+        globalKey: keyScrollTimeMoney,
+      ),
       SizedBox(height: Const.largePadding),
       ...fakeChapter(
-          context: context,
-          title: S.of(context).contact_me_nav_item,
-          globalKey: keyScrollContactMe,
-          secondText: true),
+        context: context,
+        title: S.of(context).contact_me_nav_item,
+        globalKey: keyScrollContactMe,
+      ),
     ];
   }
 
@@ -259,26 +266,16 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
       SizedBox(height: Const.largePadding),
       Expanded(
         flex: 2,
-        child: NotificationListener<ScrollEndNotification>(
-          child: SingleChildScrollView(
-            controller: _scrollController,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: Const.largePadding),
-                SizedBox(height: Const.smallPadding),
-                ...allChapters(),
-              ],
-            ),
+        child: ScrollListWithNavFocus(
+          scrollController: scrollController,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: Const.largePadding),
+              SizedBox(height: Const.smallPadding),
+              ...allChapters(),
+            ],
           ),
-          onNotification: (notification) {
-            print(notification.toString());
-            print(notification.metrics.pixels);
-            scrollHomeScreenProvided
-                .updateMetricPixel(notification.metrics.pixels);
-            print(scrollHomeScreenProvided.metricsPixel);
-            return true;
-          },
         ),
       ),
     ]);
@@ -289,30 +286,16 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
     ScrollHomeScreen scrollHomeScreenProvided =
         Provider.of<ScrollHomeScreen>(context);
     print(scrollHomeScreenProvided);
-    return Center(
-      child: NotificationListener<ScrollEndNotification>(
-        child: SingleChildScrollView(
-          //mainAxisAlignment: MainAxisAlignment.center,
-          controller: _scrollController,
-          child: Column(children: [
-            SizedBox(height: Const.largePadding),
-            ...nameAndPicture(context),
-            SizedBox(height: Const.largePadding),
-            ...linkedinAndThank(context),
-            //SizedBox(height: Const.largePadding),
-            ...allChapters(),
-          ]),
-        ),
-        onNotification: (notification) {
-          if (notification is ScrollStartNotification) {
-            print(notification.metrics.pixels);
-            scrollHomeScreenProvided
-                .updateMetricPixel(notification.metrics.pixels);
-            print(scrollHomeScreenProvided.metricsPixel);
-          }
-          return true;
-        },
-      ),
+    return ScrollListWithNavFocus(
+      scrollController: scrollController,
+      child: Column(children: [
+        SizedBox(height: Const.largePadding),
+        ...nameAndPicture(context),
+        SizedBox(height: Const.largePadding),
+        ...linkedinAndThank(context),
+        //SizedBox(height: Const.largePadding),
+        ...allChapters(),
+      ]),
     );
   }
 }
