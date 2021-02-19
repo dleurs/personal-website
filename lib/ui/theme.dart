@@ -8,19 +8,21 @@ class AppColors {
 
 class AppThemeNotifier with ChangeNotifier {
   static ThemeData get lightTheme {
-    return ThemeData(
+    ThemeData theme = ThemeData(
       brightness: Brightness.light,
       primarySwatch: Colors.blue,
       primaryColor: Colors.blue,
     );
+    return theme;
   }
 
   static ThemeData get darkTheme {
-    return ThemeData(
+    ThemeData theme = ThemeData(
       brightness: Brightness.dark,
       primarySwatch: Colors.grey,
       primaryColor: Colors.black,
     );
+    return theme;
   }
 
   ThemeData _themeData;

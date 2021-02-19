@@ -4,34 +4,36 @@ import 'package:personal_website/navigation/my_router_delegate.dart';
 import 'package:personal_website/ui/components/flutter_icon_com_icons.dart';
 
 class NavItem {
-  Widget icon;
+  IconData iconData;
   String nameCode;
   Function(BuildContext context) onPressed;
   NavItem(
-      {@required this.icon, @required this.nameCode, @required this.onPressed});
+      {@required this.iconData,
+      @required this.nameCode,
+      @required this.onPressed});
 }
 
 class NavItems {
   static List<NavItem> navItems = <NavItem>[
     NavItem(
-      icon: Icon(FlutterIconCom.resume),
+      iconData: FlutterIconCom.resume,
       nameCode: "resume_nav_item",
       onPressed: (context) {
         (Router.of(context).routerDelegate as MyRouterDelegate).toHomeScreen();
       },
     ),
     NavItem(
-      icon: Icon(FlutterIconCom.smartphone_original),
+      iconData: FlutterIconCom.smartphone_original,
       nameCode: "projects_nav_item",
       onPressed: (context) {},
     ),
     NavItem(
-      icon: Icon(FlutterIconCom.time_is_money),
+      iconData: FlutterIconCom.time_is_money,
       nameCode: "time_money_nav_item",
       onPressed: (context) {},
     ),
     NavItem(
-      icon: Icon(FlutterIconCom.bubble_speak),
+      iconData: FlutterIconCom.bubble_speak,
       nameCode: "contact_me_nav_item",
       onPressed: (context) {},
     ),

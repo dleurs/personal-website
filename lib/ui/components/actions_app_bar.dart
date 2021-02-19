@@ -38,12 +38,12 @@ class MyAppBar {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Flexible(
-                          child: navItem.icon,
+                          child: Icon(navItem.iconData),
                         ),
                         Flexible(
                           child: Text(
                             NavItems.getNavItemName(context, navItem.nameCode),
-                            style: TextStyle(color: Colors.white),
+                            style: Theme.of(context).textTheme.subtitle1,
                           ),
                         ),
                       ]),

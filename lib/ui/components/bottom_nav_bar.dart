@@ -18,6 +18,7 @@ class BottomNavBar extends StatelessWidget {
     AppThemeNotifier theme =
         Provider.of<AppThemeNotifier>(context, listen: false);
     return BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: 0, // this will be set when a new tab is tapped
         onTap: callCallback(),
         unselectedItemColor: theme?.getTheme()?.hintColor ?? Colors.grey,
@@ -36,7 +37,7 @@ class BottomNavBar extends StatelessWidget {
         //type: BottomNavigationBarType.fixed,
         items: NavItems.navItems.map((NavItem navItem) {
           return BottomNavigationBarItem(
-            icon: navItem.icon,
+            icon: Icon(navItem.iconData),
             backgroundColor: Colors.white,
             label: NavItems.getNavItemName(context, navItem.nameCode),
           );
