@@ -184,7 +184,9 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
     @required BuildContext context,
     @required GlobalKey key,
     @required String title,
+    @required NavPart navPart,
   }) {
+    ScrollHomeScreen scrollProvider = Provider.of<ScrollHomeScreen>(context);
     return VisibilityDetector(
       key: key,
       child: Column(children: [
@@ -202,9 +204,12 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
       ]),
       onVisibilityChanged: (VisibilityInfo info) {
         debugPrint("onVisibilityChanged " +
-            title +
+            navPart.toString() +
             " - " +
             info.visibleFraction.toString());
+        NavPart newFocus =
+            scrollProvider.updateVisibleFraction(navPart, info.visibleFraction);
+        print("newFocus :" + newFocus.toString());
       },
     );
   }
@@ -231,22 +236,24 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
         context: context,
         title: S.of(context).resume_nav_item,
         key: keyResume,
+        navPart: NavPart.resume,
       ),
       fakeChapter(
         context: context,
         title: S.of(context).projects_nav_item,
         key: keyProjects,
+        navPart: NavPart.projects,
       ),
       fakeChapter(
-        context: context,
-        title: S.of(context).time_money_nav_item,
-        key: keyTimeMoney,
-      ),
+          context: context,
+          title: S.of(context).time_money_nav_item,
+          key: keyTimeMoney,
+          navPart: NavPart.timeMoney),
       fakeChapter(
-        context: context,
-        title: S.of(context).contact_me_nav_item,
-        key: keyContactMe,
-      ),
+          context: context,
+          title: S.of(context).contact_me_nav_item,
+          key: keyContactMe,
+          navPart: NavPart.contactMe),
     ];
   }
 
