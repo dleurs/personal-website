@@ -32,14 +32,10 @@ class HomeScreenProvided extends StatefulWidget {
 
 class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
   ScrollController scrollController;
-  GlobalKey keyTitleResume = GlobalKey();
-  GlobalKey keyTitleProjects = GlobalKey();
-  GlobalKey keyTitleTimeMoney = GlobalKey();
-  GlobalKey keyTitleContactMe = GlobalKey();
-  GlobalKey keyBodyResume = GlobalKey();
-  GlobalKey keyBodyProjects = GlobalKey();
-  GlobalKey keyBodyTimeMoney = GlobalKey();
-  GlobalKey keyBodyContactMe = GlobalKey();
+  GlobalKey keyResume = GlobalKey();
+  GlobalKey keyProjects = GlobalKey();
+  GlobalKey keyTimeMoney = GlobalKey();
+  GlobalKey keyContactMe = GlobalKey();
 
   _launchURL() async {
     const url = 'https://www.linkedin.com/in/dimitri-leurs-666733130/';
@@ -59,30 +55,30 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
   void scrollNavItem(int index) {
     if (index == 0) {
       scrollController.position.ensureVisible(
-        keyTitleResume.currentContext.findRenderObject(),
+        keyResume.currentContext.findRenderObject(),
         alignment:
-            0.1, // How far into view the item should be scrolled (between 0 and 1).
+            0, // How far into view the item should be scrolled (between 0 and 1).
         duration: const Duration(milliseconds: 600),
       );
     } else if (index == 1) {
       scrollController.position.ensureVisible(
-        keyTitleProjects.currentContext.findRenderObject(),
+        keyProjects.currentContext.findRenderObject(),
         alignment:
-            0.1, // How far into view the item should be scrolled (between 0 and 1).
+            0, // How far into view the item should be scrolled (between 0 and 1).
         duration: const Duration(milliseconds: 600),
       );
     } else if (index == 2) {
       scrollController.position.ensureVisible(
-        keyTitleTimeMoney.currentContext.findRenderObject(),
+        keyTimeMoney.currentContext.findRenderObject(),
         alignment:
-            0.1, // How far into view the item should be scrolled (between 0 and 1).
+            0, // How far into view the item should be scrolled (between 0 and 1).
         duration: const Duration(milliseconds: 600),
       );
     } else if (index == 3) {
       scrollController.position.ensureVisible(
-        keyTitleContactMe.currentContext.findRenderObject(),
+        keyContactMe.currentContext.findRenderObject(),
         alignment:
-            0.1, // How far into view the item should be scrolled (between 0 and 1).
+            0, // How far into view the item should be scrolled (between 0 and 1).
         duration: const Duration(milliseconds: 600),
       );
     }
@@ -186,19 +182,17 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
 
   Widget fakeChapter({
     @required BuildContext context,
-    @required GlobalKey keyTitle,
-    @required GlobalKey keyBody,
+    @required GlobalKey key,
     @required String title,
   }) {
     return VisibilityDetector(
-      key: keyBody,
+      key: key,
       child: Column(children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(Const.largePadding,
-              Const.smallPadding, Const.largePadding, Const.smallPadding),
+              Const.mediumPadding, Const.largePadding, Const.mediumPadding),
           child: Text(
             title,
-            key: keyTitle,
             style: Theme.of(context).textTheme.headline4,
           ),
         ),
@@ -236,29 +230,22 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
       fakeChapter(
         context: context,
         title: S.of(context).resume_nav_item,
-        keyTitle: keyTitleResume,
-        keyBody: keyBodyResume,
+        key: keyResume,
       ),
-      SizedBox(height: Const.largePadding),
       fakeChapter(
         context: context,
         title: S.of(context).projects_nav_item,
-        keyTitle: keyTitleProjects,
-        keyBody: keyBodyProjects,
+        key: keyProjects,
       ),
-      SizedBox(height: Const.largePadding),
       fakeChapter(
         context: context,
         title: S.of(context).time_money_nav_item,
-        keyTitle: keyTitleTimeMoney,
-        keyBody: keyBodyTimeMoney,
+        key: keyTimeMoney,
       ),
-      SizedBox(height: Const.largePadding),
       fakeChapter(
         context: context,
         title: S.of(context).contact_me_nav_item,
-        keyTitle: keyTitleContactMe,
-        keyBody: keyBodyContactMe,
+        key: keyContactMe,
       ),
     ];
   }
