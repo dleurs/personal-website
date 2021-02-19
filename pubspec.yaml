@@ -15,12 +15,12 @@ dependencies:
     sdk: flutter
   equatable: ^1.2.5
   flag: ^3.1.0
-  #flutter_svg: ^0.19.2+1
   intl: ^0.16.1
   intl_utils: ^1.9.0
   provider: ^4.3.3
   shared_preferences: ^0.5.12+4
   url_launcher: ^5.7.10
+  visibility_detector: ^0.1.5
 
 dependency_overrides:
   intl: ^0.17.0-nullsafety.2

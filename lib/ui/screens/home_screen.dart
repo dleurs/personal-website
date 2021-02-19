@@ -5,11 +5,11 @@ import 'package:personal_website/navigation/app_config.dart';
 import 'package:personal_website/navigation/my_router_delegate.dart';
 import 'package:personal_website/ui/components/actions_app_bar.dart';
 import 'package:personal_website/ui/components/bottom_nav_bar.dart';
-import 'package:personal_website/ui/components/scroll_list_with_nav_focus.dart';
 import 'package:personal_website/ui/screens/base_screen.dart';
 import 'package:personal_website/utils/constant.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class HomeScreen extends StatelessWidget {
   static AppConfig getConfig() {
@@ -40,8 +40,6 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
   GlobalKey keyBodyProjects = GlobalKey();
   GlobalKey keyBodyTimeMoney = GlobalKey();
   GlobalKey keyBodyContactMe = GlobalKey();
-  ScrollVariables scrollVarTitle;
-  ScrollVariables scrollVarBody;
 
   _launchURL() async {
     const url = 'https://www.linkedin.com/in/dimitri-leurs-666733130/';
@@ -55,18 +53,6 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
   @override
   void initState() {
     scrollController = ScrollController();
-    scrollVarTitle = ScrollVariables(
-        scrollController: scrollController,
-        key1: keyTitleResume,
-        key2: keyTitleProjects,
-        key3: keyTitleTimeMoney,
-        key4: keyTitleContactMe);
-    scrollVarBody = ScrollVariables(
-        scrollController: scrollController,
-        key1: keyBodyResume,
-        key2: keyBodyProjects,
-        key3: keyBodyTimeMoney,
-        key4: keyBodyContactMe);
     super.initState();
   }
 
@@ -204,20 +190,29 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
     @required GlobalKey keyBody,
     @required String title,
   }) {
-    return Column(key: keyBody, children: [
-      Padding(
-        padding: const EdgeInsets.fromLTRB(Const.largePadding,
-            Const.smallPadding, Const.largePadding, Const.smallPadding),
-        child: Text(
-          title,
-          key: keyTitle,
-          style: Theme.of(context).textTheme.headline4,
+    return VisibilityDetector(
+      key: keyBody,
+      child: Column(children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(Const.largePadding,
+              Const.smallPadding, Const.largePadding, Const.smallPadding),
+          child: Text(
+            title,
+            key: keyTitle,
+            style: Theme.of(context).textTheme.headline4,
+          ),
         ),
-      ),
-      ...dummyText(),
-      ...dummyText(),
-      ...dummyText(),
-    ]);
+        ...dummyText(),
+        ...dummyText(),
+        ...dummyText(),
+      ]),
+      onVisibilityChanged: (VisibilityInfo info) {
+        debugPrint("onVisibilityChanged " +
+            title +
+            " - " +
+            info.visibleFraction.toString());
+      },
+    );
   }
 
   List<Widget> dummyText() {
@@ -288,19 +283,20 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
       ),
       SizedBox(height: Const.largePadding),
       Expanded(
-        flex: 2,
-        child: ScrollListWithNavFocus(
-          v: scrollVarBody,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: Const.largePadding),
-              SizedBox(height: Const.smallPadding),
-              ...allChapters(),
-            ],
-          ),
-        ),
-      ),
+          flex: 2,
+          child: Center(
+              child: SingleChildScrollView(
+            //mainAxisAlignment: MainAxisAlignment.center,
+            controller: scrollController,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: Const.largePadding),
+                SizedBox(height: Const.smallPadding),
+                ...allChapters(),
+              ],
+            ),
+          ))),
     ]);
   }
 
@@ -309,8 +305,9 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
     ScrollHomeScreen scrollHomeScreenProvided =
         Provider.of<ScrollHomeScreen>(context);
     print(scrollHomeScreenProvided);
-    return ScrollListWithNavFocus(
-      v: scrollVarBody,
+    return SingleChildScrollView(
+      //mainAxisAlignment: MainAxisAlignment.center,
+      controller: scrollController,
       child: Column(children: [
         SizedBox(height: Const.largePadding),
         ...nameAndPicture(context),
