@@ -81,18 +81,15 @@ abstract class BaseScreenState<T extends StatefulWidget> extends State<T> {
   /// Override this method in each screen that needs a specific one
   ///
   PreferredSizeWidget buildAppBar(BuildContext context) {
-    // Cannot use LayoutBuilder because PreferredSizeWidget and not Widget
-    double width = MediaQuery.of(context).size.width;
     return AppBar(
-      title: Text(
-        S.of(context).my_name,
-      ),
-      actions: MyAppBar.buildActions(
-        context: context,
-        setLanguage: setLanguage,
-        displayNavItems: (width > Const.mediumScreen),
-      ),
-    );
+        title: Text(
+          S.of(context).my_name,
+        ),
+        actions: buildActionsAppBar(context));
+  }
+
+  List<Widget> buildActionsAppBar(BuildContext context) {
+    return null;
   }
 
   ///

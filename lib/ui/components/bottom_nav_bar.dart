@@ -4,14 +4,8 @@ import 'package:personal_website/ui/theme.dart';
 import 'package:provider/provider.dart';
 
 class BottomNavBar extends StatelessWidget {
-  final Function() pressFirstNavItem;
-  BottomNavBar({@required this.pressFirstNavItem});
-
-  void Function(int index) callCallback() {
-    return (index) {
-      pressFirstNavItem();
-    };
-  }
+  final Function(int) scrollNavItem;
+  BottomNavBar({@required this.scrollNavItem});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +13,8 @@ class BottomNavBar extends StatelessWidget {
         Provider.of<AppThemeNotifier>(context, listen: false);
     return BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        currentIndex: 0, // this will be set when a new tab is tapped
-        onTap: callCallback(),
+        //currentIndex: 0, // this will be set when a new tab is tapped
+        onTap: scrollNavItem,
         unselectedItemColor: theme?.getTheme()?.hintColor ?? Colors.grey,
         unselectedLabelStyle: TextStyle(
           color: theme?.getTheme()?.hintColor ?? Colors.grey,

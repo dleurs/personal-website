@@ -3,6 +3,7 @@ import 'package:personal_website/generated/l10n.dart';
 import 'package:personal_website/models/scroll_home_screen.dart';
 import 'package:personal_website/navigation/app_config.dart';
 import 'package:personal_website/navigation/my_router_delegate.dart';
+import 'package:personal_website/ui/components/actions_app_bar.dart';
 import 'package:personal_website/ui/components/bottom_nav_bar.dart';
 import 'package:personal_website/ui/screens/base_screen.dart';
 import 'package:personal_website/utils/constant.dart';
@@ -40,19 +41,52 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
     scrollController = ScrollController();
   }
 
-  void pressFirstNavItem() {
-    print("Hello");
-    scrollController.position.ensureVisible(
-      keyScrollResume.currentContext.findRenderObject(),
-      alignment:
-          0.1, // How far into view the item should be scrolled (between 0 and 1).
-      duration: const Duration(milliseconds: 600),
-    );
+  void scrollNavItem(int index) {
+    if (index == 0) {
+      scrollController.position.ensureVisible(
+        keyScrollResume.currentContext.findRenderObject(),
+        alignment:
+            0.1, // How far into view the item should be scrolled (between 0 and 1).
+        duration: const Duration(milliseconds: 600),
+      );
+    } else if (index == 1) {
+      scrollController.position.ensureVisible(
+        keyScrollProjects.currentContext.findRenderObject(),
+        alignment:
+            0.1, // How far into view the item should be scrolled (between 0 and 1).
+        duration: const Duration(milliseconds: 600),
+      );
+    } else if (index == 2) {
+      scrollController.position.ensureVisible(
+        keyScrollTimeMoney.currentContext.findRenderObject(),
+        alignment:
+            0.1, // How far into view the item should be scrolled (between 0 and 1).
+        duration: const Duration(milliseconds: 600),
+      );
+    } else if (index == 3) {
+      scrollController.position.ensureVisible(
+        keyScrollContactMe.currentContext.findRenderObject(),
+        alignment:
+            0.1, // How far into view the item should be scrolled (between 0 and 1).
+        duration: const Duration(milliseconds: 600),
+      );
+    }
   }
 
   @override
   Widget buildBottomNavigationBar(BuildContext context) {
-    return BottomNavBar(pressFirstNavItem: pressFirstNavItem);
+    return BottomNavBar(scrollNavItem: scrollNavItem);
+  }
+
+  @override
+  List<Widget> buildActionsAppBar(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    return MyAppBar.buildActions(
+      context: context,
+      setLanguage: setLanguage,
+      scrollNavItem: scrollNavItem,
+      displayNavItems: (width > Const.mediumScreen),
+    );
   }
 
   List<Widget> nameAndPicture(BuildContext context) {
@@ -214,6 +248,7 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
       Expanded(
         flex: 2,
         child: SingleChildScrollView(
+          controller: scrollController,
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             SizedBox(height: Const.largePadding),
@@ -241,11 +276,6 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
             ...linkedinAndThank(context),
             //SizedBox(height: Const.largePadding),
             ...allChapters(),
-            ElevatedButton(
-                onPressed: () {
-                  pressFirstNavItem();
-                },
-                child: Text("Scroll"))
           ]),
         ),
         onNotification: (notification) {

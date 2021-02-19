@@ -10,6 +10,7 @@ class MyAppBar {
   static List<Widget> buildActions({
     @required BuildContext context,
     @required Function(String) setLanguage,
+    @required Function(int) scrollNavItem,
     @required bool displayNavItems,
   }) {
     List<Widget> actions = <Widget>[];
@@ -30,7 +31,7 @@ class MyAppBar {
                 padding: const EdgeInsets.only(right: 8.0, left: 8.0),
                 child: FlatButton(
                   onPressed: () {
-                    navItem.onPressed(context);
+                    scrollNavItem(navItem.scrollIndex);
                   },
                   //color: theme.getTheme().focusColor,
                   child: Column(
