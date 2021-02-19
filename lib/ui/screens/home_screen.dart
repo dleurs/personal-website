@@ -30,7 +30,7 @@ class HomeScreenProvided extends StatefulWidget {
 }
 
 class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
-  ScrollController scrollController;
+  ScrollController _scrollController;
   GlobalKey keyScrollResume = GlobalKey();
   GlobalKey keyScrollProjects = GlobalKey();
   GlobalKey keyScrollTimeMoney = GlobalKey();
@@ -47,34 +47,34 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
 
   @override
   void initState() {
+    _scrollController = ScrollController();
     super.initState();
-    scrollController = ScrollController();
   }
 
   void scrollNavItem(int index) {
     if (index == 0) {
-      scrollController.position.ensureVisible(
+      _scrollController.position.ensureVisible(
         keyScrollResume.currentContext.findRenderObject(),
         alignment:
             0.1, // How far into view the item should be scrolled (between 0 and 1).
         duration: const Duration(milliseconds: 600),
       );
     } else if (index == 1) {
-      scrollController.position.ensureVisible(
+      _scrollController.position.ensureVisible(
         keyScrollProjects.currentContext.findRenderObject(),
         alignment:
             0.1, // How far into view the item should be scrolled (between 0 and 1).
         duration: const Duration(milliseconds: 600),
       );
     } else if (index == 2) {
-      scrollController.position.ensureVisible(
+      _scrollController.position.ensureVisible(
         keyScrollTimeMoney.currentContext.findRenderObject(),
         alignment:
             0.1, // How far into view the item should be scrolled (between 0 and 1).
         duration: const Duration(milliseconds: 600),
       );
     } else if (index == 3) {
-      scrollController.position.ensureVisible(
+      _scrollController.position.ensureVisible(
         keyScrollContactMe.currentContext.findRenderObject(),
         alignment:
             0.1, // How far into view the item should be scrolled (between 0 and 1).
@@ -216,30 +216,32 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
           context: context,
           title: S.of(context).resume_nav_item,
           globalKey: keyScrollResume,
-          secondText: false),
+          secondText: true),
       SizedBox(height: Const.largePadding),
       ...fakeChapter(
           context: context,
           title: S.of(context).projects_nav_item,
           globalKey: keyScrollProjects,
-          secondText: false),
+          secondText: true),
       SizedBox(height: Const.largePadding),
       ...fakeChapter(
           context: context,
           title: S.of(context).time_money_nav_item,
           globalKey: keyScrollTimeMoney,
-          secondText: false),
+          secondText: true),
       SizedBox(height: Const.largePadding),
       ...fakeChapter(
           context: context,
           title: S.of(context).contact_me_nav_item,
           globalKey: keyScrollContactMe,
-          secondText: false),
+          secondText: true),
     ];
   }
 
   @override
   Widget buildLargeScreen(BuildContext context) {
+    ScrollHomeScreen scrollHomeScreenProvided =
+        Provider.of<ScrollHomeScreen>(context);
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Expanded(
         flex: 1,
@@ -257,14 +259,26 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
       SizedBox(height: Const.largePadding),
       Expanded(
         flex: 2,
-        child: SingleChildScrollView(
-          controller: scrollController,
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(height: Const.largePadding),
-            SizedBox(height: Const.smallPadding),
-            ...allChapters(),
-          ]),
+        child: NotificationListener<ScrollEndNotification>(
+          child: SingleChildScrollView(
+            controller: _scrollController,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: Const.largePadding),
+                SizedBox(height: Const.smallPadding),
+                ...allChapters(),
+              ],
+            ),
+          ),
+          onNotification: (notification) {
+            print(notification.toString());
+            print(notification.metrics.pixels);
+            scrollHomeScreenProvided
+                .updateMetricPixel(notification.metrics.pixels);
+            print(scrollHomeScreenProvided.metricsPixel);
+            return true;
+          },
         ),
       ),
     ]);
@@ -279,7 +293,7 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
       child: NotificationListener<ScrollEndNotification>(
         child: SingleChildScrollView(
           //mainAxisAlignment: MainAxisAlignment.center,
-          controller: scrollController,
+          controller: _scrollController,
           child: Column(children: [
             SizedBox(height: Const.largePadding),
             ...nameAndPicture(context),
@@ -290,9 +304,13 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
           ]),
         ),
         onNotification: (notification) {
-          print(notification.metrics.pixels);
-          scrollHomeScreenProvided
-              .updateMetricPixel(notification.metrics.pixels);
+          if (notification is ScrollStartNotification) {
+            print(notification.metrics.pixels);
+            scrollHomeScreenProvided
+                .updateMetricPixel(notification.metrics.pixels);
+            print(scrollHomeScreenProvided.metricsPixel);
+          }
+          return true;
         },
       ),
     );
