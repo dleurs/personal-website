@@ -32,10 +32,16 @@ class HomeScreenProvided extends StatefulWidget {
 
 class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
   ScrollController scrollController;
-  GlobalKey keyScrollResume = GlobalKey();
-  GlobalKey keyScrollProjects = GlobalKey();
-  GlobalKey keyScrollTimeMoney = GlobalKey();
-  GlobalKey keyScrollContactMe = GlobalKey();
+  GlobalKey keyTitleResume = GlobalKey();
+  GlobalKey keyTitleProjects = GlobalKey();
+  GlobalKey keyTitleTimeMoney = GlobalKey();
+  GlobalKey keyTitleContactMe = GlobalKey();
+  GlobalKey keyBodyResume = GlobalKey();
+  GlobalKey keyBodyProjects = GlobalKey();
+  GlobalKey keyBodyTimeMoney = GlobalKey();
+  GlobalKey keyBodyContactMe = GlobalKey();
+  ScrollVariables scrollVarTitle;
+  ScrollVariables scrollVarBody;
 
   _launchURL() async {
     const url = 'https://www.linkedin.com/in/dimitri-leurs-666733130/';
@@ -49,34 +55,46 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
   @override
   void initState() {
     scrollController = ScrollController();
+    scrollVarTitle = ScrollVariables(
+        scrollController: scrollController,
+        key1: keyTitleResume,
+        key2: keyTitleProjects,
+        key3: keyTitleTimeMoney,
+        key4: keyTitleContactMe);
+    scrollVarBody = ScrollVariables(
+        scrollController: scrollController,
+        key1: keyBodyResume,
+        key2: keyBodyProjects,
+        key3: keyBodyTimeMoney,
+        key4: keyBodyContactMe);
     super.initState();
   }
 
   void scrollNavItem(int index) {
     if (index == 0) {
       scrollController.position.ensureVisible(
-        keyScrollResume.currentContext.findRenderObject(),
+        keyTitleResume.currentContext.findRenderObject(),
         alignment:
             0.1, // How far into view the item should be scrolled (between 0 and 1).
         duration: const Duration(milliseconds: 600),
       );
     } else if (index == 1) {
       scrollController.position.ensureVisible(
-        keyScrollProjects.currentContext.findRenderObject(),
+        keyTitleProjects.currentContext.findRenderObject(),
         alignment:
             0.1, // How far into view the item should be scrolled (between 0 and 1).
         duration: const Duration(milliseconds: 600),
       );
     } else if (index == 2) {
       scrollController.position.ensureVisible(
-        keyScrollTimeMoney.currentContext.findRenderObject(),
+        keyTitleTimeMoney.currentContext.findRenderObject(),
         alignment:
             0.1, // How far into view the item should be scrolled (between 0 and 1).
         duration: const Duration(milliseconds: 600),
       );
     } else if (index == 3) {
       scrollController.position.ensureVisible(
-        keyScrollContactMe.currentContext.findRenderObject(),
+        keyTitleContactMe.currentContext.findRenderObject(),
         alignment:
             0.1, // How far into view the item should be scrolled (between 0 and 1).
         duration: const Duration(milliseconds: 600),
@@ -180,25 +198,26 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
     ];
   }
 
-  List<Widget> fakeChapter({
+  Widget fakeChapter({
     @required BuildContext context,
-    @required GlobalKey globalKey,
+    @required GlobalKey keyTitle,
+    @required GlobalKey keyBody,
     @required String title,
   }) {
-    return [
+    return Column(key: keyBody, children: [
       Padding(
         padding: const EdgeInsets.fromLTRB(Const.largePadding,
             Const.smallPadding, Const.largePadding, Const.smallPadding),
         child: Text(
           title,
-          key: globalKey,
+          key: keyTitle,
           style: Theme.of(context).textTheme.headline4,
         ),
       ),
       ...dummyText(),
       ...dummyText(),
       ...dummyText(),
-    ];
+    ]);
   }
 
   List<Widget> dummyText() {
@@ -219,28 +238,32 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
 
   List<Widget> allChapters() {
     return [
-      ...fakeChapter(
+      fakeChapter(
         context: context,
         title: S.of(context).resume_nav_item,
-        globalKey: keyScrollResume,
+        keyTitle: keyTitleResume,
+        keyBody: keyBodyResume,
       ),
       SizedBox(height: Const.largePadding),
-      ...fakeChapter(
+      fakeChapter(
         context: context,
         title: S.of(context).projects_nav_item,
-        globalKey: keyScrollProjects,
+        keyTitle: keyTitleProjects,
+        keyBody: keyBodyProjects,
       ),
       SizedBox(height: Const.largePadding),
-      ...fakeChapter(
+      fakeChapter(
         context: context,
         title: S.of(context).time_money_nav_item,
-        globalKey: keyScrollTimeMoney,
+        keyTitle: keyTitleTimeMoney,
+        keyBody: keyBodyTimeMoney,
       ),
       SizedBox(height: Const.largePadding),
-      ...fakeChapter(
+      fakeChapter(
         context: context,
         title: S.of(context).contact_me_nav_item,
-        globalKey: keyScrollContactMe,
+        keyTitle: keyTitleContactMe,
+        keyBody: keyBodyContactMe,
       ),
     ];
   }
@@ -267,7 +290,7 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
       Expanded(
         flex: 2,
         child: ScrollListWithNavFocus(
-          scrollController: scrollController,
+          v: scrollVarBody,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -287,7 +310,7 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
         Provider.of<ScrollHomeScreen>(context);
     print(scrollHomeScreenProvided);
     return ScrollListWithNavFocus(
-      scrollController: scrollController,
+      v: scrollVarBody,
       child: Column(children: [
         SizedBox(height: Const.largePadding),
         ...nameAndPicture(context),
