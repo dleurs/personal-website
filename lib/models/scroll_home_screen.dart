@@ -82,3 +82,17 @@ class ScrollHomeScreen with ChangeNotifier {
     return res;
   }
 }
+
+int navPartToInt(NavPart navPart) {
+  // For BottomNavBar
+  if (navPart == NavPart.resume) {
+    return 0;
+  } else if (navPart == NavPart.projects) {
+    return 1;
+  } else if (navPart == NavPart.timeMoney) {
+    return 2;
+  } else if (navPart == NavPart.contactMe) {
+    return 3;
+  }
+  return null;
+}
