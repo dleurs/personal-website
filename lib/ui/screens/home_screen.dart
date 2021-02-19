@@ -10,16 +10,26 @@ import 'package:personal_website/utils/constant.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-
+class HomeScreen extends StatelessWidget {
   static AppConfig getConfig() {
     return AppConfig(uri: Uri(path: "/"));
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<ScrollHomeScreen>(
+      create: (context) => ScrollHomeScreen(metricsPixel: 0.0),
+      child: HomeScreenProvided(),
+    );
+  }
 }
 
-class _HomeScreenState extends BaseScreenState<HomeScreen> {
+class HomeScreenProvided extends StatefulWidget {
+  @override
+  _HomeScreenProvidedState createState() => _HomeScreenProvidedState();
+}
+
+class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
   ScrollController scrollController;
   GlobalKey keyScrollResume = GlobalKey();
   GlobalKey keyScrollProjects = GlobalKey();
@@ -262,8 +272,9 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
 
   @override
   Widget buildSmallScreen(BuildContext context) {
-    ScrollHomeScreen scrollHomeScreen = Provider.of<ScrollHomeScreen>(context);
-    print(scrollHomeScreen);
+    ScrollHomeScreen scrollHomeScreenProvided =
+        Provider.of<ScrollHomeScreen>(context);
+    print(scrollHomeScreenProvided);
     return Center(
       child: NotificationListener<ScrollEndNotification>(
         child: SingleChildScrollView(
@@ -280,7 +291,8 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
         ),
         onNotification: (notification) {
           print(notification.metrics.pixels);
-          scrollHomeScreen.updateMetricPixel(notification.metrics.pixels);
+          scrollHomeScreenProvided
+              .updateMetricPixel(notification.metrics.pixels);
         },
       ),
     );

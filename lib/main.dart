@@ -14,9 +14,6 @@ void main() {
         ChangeNotifierProvider<AppThemeNotifier>(
           create: (context) => AppThemeNotifier(),
         ),
-        ChangeNotifierProvider<ScrollHomeScreen>(
-          create: (context) => ScrollHomeScreen(metricsPixel: 0.0),
-        ),
       ],
       child: MyApp(),
     ),
