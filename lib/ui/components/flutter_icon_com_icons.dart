@@ -12,10 +12,6 @@
 ///       - asset: fonts/FlutterIconCom.ttf
 ///
 ///
-/// * Brandico, (C) 2012 by Vitaly Puzrin
-///         Author:    Crowdsourced, for Fontello project
-///         License:   SIL (http://scripts.sil.org/OFL)
-///         Homepage:
 ///
 import 'package:flutter/widgets.dart';
 
@@ -25,18 +21,16 @@ class FlutterIconCom {
   static const _kFontFam = 'FlutterIconCom';
   static const String _kFontPkg = null;
 
-  static const IconData resume_and_cv =
-      IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData time_is_money_3_ =
-      IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData conversation =
-      IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData russia =
-      IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData france =
-      IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData united_kingdom =
-      IconData(0xe80f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData linkedin_rect =
-      IconData(0xf31b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData bubble_speak =
+      IconData(0xe814, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData responsive =
+      IconData(0xe815, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData resume =
+      IconData(0xe816, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData smartphone_cropped =
+      IconData(0xe817, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData smartphone_original =
+      IconData(0xe818, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData time_is_money =
+      IconData(0xe819, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

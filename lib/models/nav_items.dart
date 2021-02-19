@@ -14,24 +14,24 @@ class NavItem {
 class NavItems {
   static List<NavItem> navItems = <NavItem>[
     NavItem(
-      icon: Icon(FlutterIconCom.resume_and_cv),
+      icon: Icon(FlutterIconCom.resume),
       nameCode: "resume_nav_item",
       onPressed: (context) {
         (Router.of(context).routerDelegate as MyRouterDelegate).toHomeScreen();
       },
     ),
     NavItem(
-      icon: Icon(Icons.mobile_friendly_outlined),
+      icon: Icon(FlutterIconCom.smartphone_original),
       nameCode: "projects_nav_item",
       onPressed: (context) {},
     ),
     NavItem(
-      icon: Icon(FlutterIconCom.time_is_money_3_),
+      icon: Icon(FlutterIconCom.time_is_money),
       nameCode: "time_money_nav_item",
       onPressed: (context) {},
     ),
     NavItem(
-      icon: Icon(FlutterIconCom.conversation),
+      icon: Icon(FlutterIconCom.bubble_speak),
       nameCode: "contact_me_nav_item",
       onPressed: (context) {},
     ),

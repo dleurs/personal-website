@@ -49,7 +49,7 @@ abstract class BaseScreenState<T extends StatefulWidget> extends State<T> {
     return Scaffold(
       appBar: this.buildAppBar(context),
       body: this.buildScreen(context),
-      bottomNavigationBar: this.buildBottomNavigationBar(context),
+      bottomNavigationBar: this.buildLayoutBottomNavigationBar(context),
       floatingActionButton: this.buildFloatingActionButton(context),
     );
     //);
@@ -81,6 +81,7 @@ abstract class BaseScreenState<T extends StatefulWidget> extends State<T> {
   /// Override this method in each screen that needs a specific one
   ///
   PreferredSizeWidget buildAppBar(BuildContext context) {
+    // Cannot use LayoutBuilder because PreferredSizeWidget and not Widget
     double width = MediaQuery.of(context).size.width;
     return AppBar(
       title: Text(
@@ -98,6 +99,18 @@ abstract class BaseScreenState<T extends StatefulWidget> extends State<T> {
   /// Implement this to build a [BottomNavigationBar] for all screens
   /// Override this method in each screen that needs a specific one
   ///
+  @override
+  Widget buildLayoutBottomNavigationBar(BuildContext context) {
+    return LayoutBuilder(builder: (context, constraints) {
+      if (constraints.maxWidth > Const.mediumScreen) {
+        return SizedBox();
+      } else {
+        return buildBottomNavigationBar(context);
+      }
+    });
+  }
+
+  @override
   Widget buildBottomNavigationBar(BuildContext context) {
     return null;
   }

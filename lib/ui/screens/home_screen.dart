@@ -52,13 +52,7 @@ class _HomeScreenState extends BaseScreenState<HomeScreen> {
 
   @override
   Widget buildBottomNavigationBar(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      if (constraints.maxWidth > Const.mediumScreen) {
-        return SizedBox();
-      } else {
-        return BottomNavBar(pressFirstNavItem: pressFirstNavItem);
-      }
-    });
+    return BottomNavBar(pressFirstNavItem: pressFirstNavItem);
   }
 
   List<Widget> nameAndPicture(BuildContext context) {

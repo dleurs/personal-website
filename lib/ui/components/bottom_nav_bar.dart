@@ -37,6 +37,7 @@ class BottomNavBar extends StatelessWidget {
         items: NavItems.navItems.map((NavItem navItem) {
           return BottomNavigationBarItem(
             icon: navItem.icon,
+            backgroundColor: Colors.white,
             label: NavItems.getNavItemName(context, navItem.nameCode),
           );
         }).toList());
