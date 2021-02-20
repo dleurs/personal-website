@@ -43,7 +43,14 @@ class MyAppBar {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Flexible(
-                          child: Icon(navItem.iconData),
+                          child: Icon(
+                            navItem.iconData,
+                            color: (focusOn == navItem.scrollIndex)
+                                ? (theme.isBlack())
+                                    ? Theme.of(context).accentColor
+                                    : Colors.black
+                                : Theme.of(context).hintColor,
+                          ),
                         ),
                         Flexible(
                           child: Text(
@@ -53,6 +60,11 @@ class MyAppBar {
                                     .textTheme
                                     .subtitle1
                                     .fontSize,
+                                color: (focusOn == navItem.scrollIndex)
+                                    ? (theme.isBlack())
+                                        ? Theme.of(context).accentColor
+                                        : Colors.black
+                                    : Theme.of(context).hintColor,
                                 fontWeight: (focusOn == navItem.scrollIndex)
                                     ? FontWeight.bold
                                     : FontWeight.normal),
