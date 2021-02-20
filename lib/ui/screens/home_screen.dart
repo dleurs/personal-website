@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/generated/l10n.dart';
+import 'package:personal_website/models/nav_items.dart';
 import 'package:personal_website/models/scroll_home_screen.dart';
 import 'package:personal_website/navigation/app_config.dart';
 import 'package:personal_website/navigation/my_router_delegate.dart';

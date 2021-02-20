@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:personal_website/models/language_items.dart';
 import 'package:personal_website/models/nav_items.dart';
+import 'package:personal_website/models/scroll_home_screen.dart';
 import 'package:personal_website/ui/theme.dart';
 import 'package:personal_website/utils/constant.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +18,7 @@ class MyAppBar {
     String intlCurrentLang = Intl.getCurrentLocale();
     AppThemeNotifier theme =
         Provider.of<AppThemeNotifier>(context, listen: false);
+
     double screenWidth = MediaQuery.of(context).size.width;
     //print("theme : " + theme.toString());
 
@@ -27,28 +29,36 @@ class MyAppBar {
         child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: NavItems.navItems.map((NavItem navItem) {
+              /*            ScrollHomeScreen scrollProvider =
+                  Provider.of<ScrollHomeScreen>(context); */
               return Padding(
                 padding: const EdgeInsets.only(right: 8.0, left: 8.0),
-                child: FlatButton(
-                  onPressed: () {
-                    scrollNavItem(navItem.scrollIndex);
-                  },
-                  //color: theme.getTheme().focusColor,
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Flexible(
-                          child: Icon(navItem.iconData),
-                        ),
-                        Flexible(
-                          child: Text(
-                            NavItems.getNavItemName(context, navItem.nameCode),
-                            style: Theme.of(context).textTheme.subtitle1,
+                child: Consumer<ScrollHomeScreen>(
+                    builder: (context, scrollProvider, child) {
+                  return FlatButton(
+                    autofocus: (navPartToInt(scrollProvider.focusOn) ==
+                        navItem.scrollIndex),
+                    onPressed: () {
+                      scrollNavItem(navItem.scrollIndex);
+                    },
+                    //color: theme.getTheme().focusColor,
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Flexible(
+                            child: Icon(navItem.iconData),
                           ),
-                        ),
-                      ]),
-                ),
+                          Flexible(
+                            child: Text(
+                              NavItems.getNavItemName(
+                                  context, navItem.nameCode),
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ),
+                          ),
+                        ]),
+                  );
+                }),
               );
             }).toList()),
       ));

@@ -3,6 +3,8 @@ import 'package:personal_website/generated/l10n.dart';
 import 'package:personal_website/navigation/my_router_delegate.dart';
 import 'package:personal_website/ui/components/flutter_icon_com_icons.dart';
 
+enum NavPart { resume, projects, timeMoney, contactMe }
+
 class NavItem {
   IconData iconData;
   String nameCode;
@@ -12,6 +14,20 @@ class NavItem {
     @required this.nameCode,
     @required this.scrollIndex,
   });
+}
+
+int navPartToInt(NavPart navPart) {
+  // For BottomNavBar
+  if (navPart == NavPart.resume) {
+    return 0;
+  } else if (navPart == NavPart.projects) {
+    return 1;
+  } else if (navPart == NavPart.timeMoney) {
+    return 2;
+  } else if (navPart == NavPart.contactMe) {
+    return 3;
+  }
+  return null;
 }
 
 class NavItems {

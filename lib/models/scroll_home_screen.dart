@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-enum NavPart { resume, projects, timeMoney, contactMe }
+import 'package:personal_website/models/nav_items.dart';
 
 class ScrollHomeScreen with ChangeNotifier {
   double metricsPixel;
@@ -81,18 +81,4 @@ class ScrollHomeScreen with ChangeNotifier {
     res += "}";
     return res;
   }
-}
-
-int navPartToInt(NavPart navPart) {
-  // For BottomNavBar
-  if (navPart == NavPart.resume) {
-    return 0;
-  } else if (navPart == NavPart.projects) {
-    return 1;
-  } else if (navPart == NavPart.timeMoney) {
-    return 2;
-  } else if (navPart == NavPart.contactMe) {
-    return 3;
-  }
-  return null;
 }
