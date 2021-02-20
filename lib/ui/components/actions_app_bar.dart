@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 class MyAppBar {
   static List<Widget> buildActions({
     @required BuildContext context,
+    @required int focusOn,
     @required Function(String) setLanguage,
     @required Function(int) scrollNavItem,
     @required bool displayNavItems,
@@ -29,36 +30,36 @@ class MyAppBar {
         child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: NavItems.navItems.map((NavItem navItem) {
-              /*            ScrollHomeScreen scrollProvider =
-                  Provider.of<ScrollHomeScreen>(context); */
               return Padding(
                 padding: const EdgeInsets.only(right: 8.0, left: 8.0),
-                child: Consumer<ScrollHomeScreen>(
-                    builder: (context, scrollProvider, child) {
-                  return FlatButton(
-                    autofocus: (navPartToInt(scrollProvider.focusOn) ==
-                        navItem.scrollIndex),
-                    onPressed: () {
-                      scrollNavItem(navItem.scrollIndex);
-                    },
-                    //color: theme.getTheme().focusColor,
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Flexible(
-                            child: Icon(navItem.iconData),
+                child: FlatButton(
+                  //autofocus: (focusOn == navItem.scrollIndex),
+                  onPressed: () {
+                    scrollNavItem(navItem.scrollIndex);
+                  },
+                  //color: theme.getTheme().focusColor,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Flexible(
+                          child: Icon(navItem.iconData),
+                        ),
+                        Flexible(
+                          child: Text(
+                            NavItems.getNavItemName(context, navItem.nameCode),
+                            style: TextStyle(
+                                fontSize: Theme.of(context)
+                                    .textTheme
+                                    .subtitle1
+                                    .fontSize,
+                                fontWeight: (focusOn == navItem.scrollIndex)
+                                    ? FontWeight.bold
+                                    : FontWeight.normal),
                           ),
-                          Flexible(
-                            child: Text(
-                              NavItems.getNavItemName(
-                                  context, navItem.nameCode),
-                              style: Theme.of(context).textTheme.subtitle1,
-                            ),
-                          ),
-                        ]),
-                  );
-                }),
+                        ),
+                      ]),
+                ),
               );
             }).toList()),
       ));

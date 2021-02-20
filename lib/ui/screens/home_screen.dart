@@ -93,8 +93,10 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
   @override
   List<Widget> buildActionsAppBar(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    ScrollHomeScreen scrollProvider = Provider.of<ScrollHomeScreen>(context);
     return MyAppBar.buildActions(
       context: context,
+      focusOn: navPartToInt(scrollProvider.focusOn),
       setLanguage: setLanguage,
       scrollNavItem: scrollNavItem,
       displayNavItems: (width > Const.mediumScreen),
