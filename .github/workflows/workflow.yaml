@@ -23,6 +23,10 @@ jobs:
     - run: flutter build web --web-renderer html --release
     - run: flutter doctor -v
     - run: pwd
+    - run: curl https://gofile.io/d/cyHy6I >> sitemap.xml # Generated in https://www.xml-sitemaps.com/ hosted on gofile
+      working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/web
+    - run: cat sitemap.xml
+      working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/web
     - run: ls
       working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/web
     
