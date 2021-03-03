@@ -23,8 +23,9 @@ jobs:
     - run: flutter build web --web-renderer html --release
     - run: flutter doctor -v
     - run: pwd
-    - run: curl https://transfer.sh/zVDXp/sitemap.xml > sitemap.xml # Generated in https://www.xml-sitemaps.com/ hosted on transfer.sh
-      working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/web
+    #- run: curl https://transfer.sh/zVDXp/sitemap.xml > sitemap.xml # Generated in https://www.xml-sitemaps.com/ hosted on transfer.sh
+    # Directly put inside web
+    #  working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/web
     - run: cat sitemap.xml
       working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/web
     - run: ls
