@@ -15,29 +15,27 @@ jobs:
         java-version: '12.x'
     - uses: subosito/flutter-action@v1
       with:
-        #flutter-version: '1.24.0-10.2.pre' '1.26.0-17.5.pre'
-        channel: 'beta' # Currently you have to use beta channel for Flutter web.
-    #- run: flutter upgrade # You also get the flutter version
+        channel: 'stable' 
     - run: flutter config --enable-web
     - run: flutter packages get
-    - run: flutter build web --web-renderer html --release
+    #- run: flutter build web --web-renderer html --release
+    - run: flutter build web --release
     - run: flutter doctor -v
     - run: pwd
     #- run: curl https://transfer.sh/zVDXp/sitemap.xml > sitemap.xml # Generated in https://www.xml-sitemaps.com/ hosted on transfer.sh
     # Directly put inside web
-    #  working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/web
     - run: cat sitemap.xml
       working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/web
     - run: ls
       working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/web
     
     # Bug https://github.com/flutter/flutter/issues/69287
-    - run: cat index.html
-      working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/web
-    - run: sed -i '/base href/d' index.html #For MacOS : sed -i '' '/base href/d' index.html
-      working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/web
-    - run: cat index.html
-      working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/web
+    #- run: cat index.html
+    #  working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/web
+    #- run: sed -i '/base href/d' index.html #For MacOS : sed -i '' '/base href/d' index.html
+    #  working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/web
+    #- run: cat index.html
+    #  working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/web
 
     - run: git init
       working-directory: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/web
