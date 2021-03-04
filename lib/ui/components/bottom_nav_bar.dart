@@ -27,7 +27,7 @@ class BottomNavBar extends StatelessWidget {
         selectedLabelStyle: TextStyle(
           color: theme?.getTheme()?.accentColor ?? Colors.blue,
         ),
-        selectedFontSize: 14.0,
+        selectedFontSize: 12.0,
 
         //backgroundColor: theme.getTheme().accentColor,
         //type: BottomNavigationBarType.fixed,
