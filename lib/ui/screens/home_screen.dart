@@ -53,35 +53,24 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
     super.initState();
   }
 
+  void scrollTo(GlobalKey key) {
+    scrollController.position.ensureVisible(
+      key.currentContext.findRenderObject(),
+      alignment:
+          0, // How far into view the item should be scrolled (between 0 and 1).
+      duration: const Duration(milliseconds: 600),
+    );
+  }
+
   void scrollNavItem(int index) {
     if (index == 0) {
-      scrollController.position.ensureVisible(
-        keyResume.currentContext.findRenderObject(),
-        alignment:
-            0, // How far into view the item should be scrolled (between 0 and 1).
-        duration: const Duration(milliseconds: 600),
-      );
+      scrollTo(keyResume);
     } else if (index == 1) {
-      scrollController.position.ensureVisible(
-        keyProjects.currentContext.findRenderObject(),
-        alignment:
-            0, // How far into view the item should be scrolled (between 0 and 1).
-        duration: const Duration(milliseconds: 600),
-      );
+      scrollTo(keyProjects);
     } else if (index == 2) {
-      scrollController.position.ensureVisible(
-        keyTimeMoney.currentContext.findRenderObject(),
-        alignment:
-            0, // How far into view the item should be scrolled (between 0 and 1).
-        duration: const Duration(milliseconds: 600),
-      );
+      scrollTo(keyTimeMoney);
     } else if (index == 3) {
-      scrollController.position.ensureVisible(
-        keyContactMe.currentContext.findRenderObject(),
-        alignment:
-            0, // How far into view the item should be scrolled (between 0 and 1).
-        duration: const Duration(milliseconds: 600),
-      );
+      scrollTo(keyContactMe);
     }
   }
 
