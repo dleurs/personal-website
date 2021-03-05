@@ -3,12 +3,12 @@ import 'package:personal_website/generated/l10n.dart';
 import 'package:personal_website/navigation/my_router_delegate.dart';
 import 'package:personal_website/ui/components/flutter_icon_com_icons.dart';
 
-enum NavPart { resume, projects, timeMoney, contactMe }
+enum NavPart { resume, projects, timeMoney, recommandation, contactMe }
 
 class NavItem {
-  IconData iconData;
-  String nameCode;
-  int scrollIndex; // Only used for top AppBar. Fixed for BottomNavBar.
+  IconData /*!*/ iconData;
+  String /*!*/ nameCode;
+  int /*!*/ scrollIndex; // Only used for top AppBar. Fixed for BottomNavBar.
   NavItem({
     @required this.iconData,
     @required this.nameCode,
@@ -45,9 +45,13 @@ class NavItems {
         nameCode: "time_money_nav_item",
         scrollIndex: 2),
     NavItem(
+        iconData: FlutterIconCom.motivation,
+        nameCode: "recommandation_nav_item",
+        scrollIndex: 3),
+    NavItem(
         iconData: FlutterIconCom.bubble_speak,
         nameCode: "contact_me_nav_item",
-        scrollIndex: 3),
+        scrollIndex: 4),
   ];
 
   static String getNavItemName(BuildContext context, String nameCode) {
@@ -57,6 +61,8 @@ class NavItems {
       return S.of(context).projects_nav_item;
     } else if (nameCode == "time_money_nav_item") {
       return S.of(context).time_money_nav_item;
+    } else if (nameCode == "recommandation_nav_item") {
+      return S.of(context).recommandation_nav_item;
     } else if (nameCode == "contact_me_nav_item") {
       return S.of(context).contact_me_nav_item;
     } else

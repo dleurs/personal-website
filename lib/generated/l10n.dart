@@ -45,10 +45,10 @@ class S {
     );
   }
 
-  /// `Contactez moi`
+  /// `Contact`
   String get contact_me_nav_item {
     return Intl.message(
-      'Contactez moi',
+      'Contact',
       name: 'contact_me_nav_item',
       desc: '',
       args: [],
@@ -130,6 +130,16 @@ class S {
     return Intl.message(
       'Projets',
       name: 'projects_nav_item',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recommandations`
+  String get recommandation_nav_item {
+    return Intl.message(
+      'Recommandations',
+      name: 'recommandation_nav_item',
       desc: '',
       args: [],
     );

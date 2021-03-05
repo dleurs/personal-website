@@ -33,4 +33,6 @@ class FlutterIconCom {
       IconData(0xe818, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData time_is_money =
       IconData(0xe819, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData motivation =
+      IconData(0xe81a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

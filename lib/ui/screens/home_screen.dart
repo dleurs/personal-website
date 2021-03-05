@@ -36,6 +36,7 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
   GlobalKey keyResume = GlobalKey();
   GlobalKey keyProjects = GlobalKey();
   GlobalKey keyTimeMoney = GlobalKey();
+  GlobalKey keyRecommandation = GlobalKey();
   GlobalKey keyContactMe = GlobalKey();
 
   _launchURL() async {
@@ -70,6 +71,8 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
     } else if (index == 2) {
       scrollTo(keyTimeMoney);
     } else if (index == 3) {
+      scrollTo(keyRecommandation);
+    } else if (index == 4) {
       scrollTo(keyContactMe);
     }
   }
@@ -241,6 +244,11 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
           title: S.of(context).time_money_nav_item,
           key: keyTimeMoney,
           navPart: NavPart.timeMoney),
+      fakeChapter(
+          context: context,
+          title: S.of(context).recommandation_nav_item,
+          key: keyRecommandation,
+          navPart: NavPart.recommandation),
       fakeChapter(
           context: context,
           title: S.of(context).contact_me_nav_item,

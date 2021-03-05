@@ -22,7 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "contact_me" : MessageLookupByLibrary.simpleMessage("Свяжитесь со мной в Linkedin"),
-    "contact_me_nav_item" : MessageLookupByLibrary.simpleMessage("Cвяжитесь со мной "),
+    "contact_me_nav_item" : MessageLookupByLibrary.simpleMessage("Связаться"),
     "detail_welcoming" : MessageLookupByLibrary.simpleMessage("Узнай больше обо мне"),
     "english_language" : MessageLookupByLibrary.simpleMessage("Английский"),
     "french_language" : MessageLookupByLibrary.simpleMessage("Французский"),
@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "my_name" : MessageLookupByLibrary.simpleMessage("Димитрий Леpс "),
     "page_not_found" : MessageLookupByLibrary.simpleMessage("Страница не найдена"),
     "projects_nav_item" : MessageLookupByLibrary.simpleMessage("Проекты"),
+    "recommandation_nav_item" : MessageLookupByLibrary.simpleMessage("Рекомендации"),
     "resume_nav_item" : MessageLookupByLibrary.simpleMessage("Pезюме"),
     "russian_language" : MessageLookupByLibrary.simpleMessage("Русский"),
     "thank_you" : MessageLookupByLibrary.simpleMessage("Спасибо"),

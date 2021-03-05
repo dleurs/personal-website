@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:personal_website/models/language_items.dart';
@@ -26,51 +28,58 @@ class MyAppBar {
     if (displayNavItems) {
       actions.add(Padding(
         padding: EdgeInsets.only(
-            right: screenWidth * (screenWidth * 0.0002192 - 0.0925)),
+            right: (screenWidth < 1280)
+                ? -433 + 0.528 * screenWidth
+                : -600 + 0.568 * screenWidth),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: NavItems.navItems.map((NavItem navItem) {
               return Padding(
                 padding: const EdgeInsets.only(right: 8.0, left: 8.0),
-                child: FlatButton(
-                  //autofocus: (focusOn == navItem.scrollIndex),
-                  onPressed: () {
-                    scrollNavItem(navItem.scrollIndex);
-                  },
-                  //color: theme.getTheme().focusColor,
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Flexible(
-                          child: Icon(
-                            navItem.iconData,
-                            color: (focusOn == navItem.scrollIndex)
-                                ? (theme.isBlack())
-                                    ? Theme.of(context).accentColor
-                                    : Colors.black
-                                : Theme.of(context).hintColor,
+                child: Container(
+                  width: (screenWidth < 1280) ? 100 : 140,
+                  child: FlatButton(
+                    //autofocus: (focusOn == navItem.scrollIndex),
+                    onPressed: () {
+                      scrollNavItem(navItem.scrollIndex);
+                    },
+                    //color: theme.getTheme().focusColor,
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Flexible(
+                            child: Icon(
+                              navItem.iconData,
+                              color: (focusOn == navItem.scrollIndex)
+                                  ? (theme.isBlack())
+                                      ? Theme.of(context).accentColor
+                                      : Colors.black
+                                  : Theme.of(context).hintColor,
+                            ),
                           ),
-                        ),
-                        Flexible(
-                          child: Text(
-                            NavItems.getNavItemName(context, navItem.nameCode),
-                            style: TextStyle(
-                                fontSize: Theme.of(context)
-                                    .textTheme
-                                    .subtitle1
-                                    .fontSize,
-                                color: (focusOn == navItem.scrollIndex)
-                                    ? (theme.isBlack())
-                                        ? Theme.of(context).accentColor
-                                        : Colors.black
-                                    : Theme.of(context).hintColor,
-                                fontWeight: (focusOn == navItem.scrollIndex)
-                                    ? FontWeight.bold
-                                    : FontWeight.normal),
+                          Flexible(
+                            child: Text(
+                              NavItems.getNavItemName(
+                                  context, navItem.nameCode),
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  fontSize: Theme.of(context)
+                                      .textTheme
+                                      .subtitle1
+                                      .fontSize,
+                                  color: (focusOn == navItem.scrollIndex)
+                                      ? (theme.isBlack())
+                                          ? Theme.of(context).accentColor
+                                          : Colors.black
+                                      : Theme.of(context).hintColor,
+                                  fontWeight: (focusOn == navItem.scrollIndex)
+                                      ? FontWeight.bold
+                                      : FontWeight.normal),
+                            ),
                           ),
-                        ),
-                      ]),
+                        ]),
+                  ),
                 ),
               );
             }).toList()),
@@ -98,7 +107,7 @@ class MyAppBar {
 
     actions.add(PopupMenuButton<LanguageItem>(
       icon: LanguageItems.getFlag(intlCurrentLang),
-      iconSize: Const.actionNavBarIconSize,
+      //iconSize: Const.actionNavBarIconSize,
       onSelected: (menuLang) {
         setLanguage(menuLang.countryCode);
       },
