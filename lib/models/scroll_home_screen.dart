@@ -9,7 +9,7 @@ class ScrollHomeScreen with ChangeNotifier {
   double visibleFractionResume;
   double visibleFractionProjects;
   double visibleFractionTimeMoney;
-  double visibleRecommandation;
+  double visibleFractionRecommandation;
   double visibleFractionContactMe;
 
   ScrollHomeScreen({
@@ -19,7 +19,7 @@ class ScrollHomeScreen with ChangeNotifier {
         0.51, // arbitrary set up 0.51, coulb have been 0.1 or 0.9
     this.visibleFractionProjects = 0.0,
     this.visibleFractionTimeMoney = 0.0,
-    this.visibleRecommandation = 0.0,
+    this.visibleFractionRecommandation = 0.0,
     this.visibleFractionContactMe = 0.0,
   }); //TODO assert only one of focuses is true;
   ScrollHomeScreen.getLocal() {
@@ -42,7 +42,7 @@ class ScrollHomeScreen with ChangeNotifier {
       visibleFractionResume,
       visibleFractionProjects,
       visibleFractionTimeMoney,
-      visibleRecommandation,
+      visibleFractionRecommandation,
       visibleFractionContactMe
     ];
     double maxFrac = variablesFraction.reduce(max);
@@ -52,7 +52,7 @@ class ScrollHomeScreen with ChangeNotifier {
       return NavPart.projects;
     } else if (maxFrac == visibleFractionTimeMoney) {
       return NavPart.timeMoney;
-    } else if (maxFrac == visibleRecommandation) {
+    } else if (maxFrac == visibleFractionRecommandation) {
       return NavPart.recommandation;
     } else if (maxFrac == visibleFractionContactMe) {
       return NavPart.contactMe;
@@ -67,7 +67,7 @@ class ScrollHomeScreen with ChangeNotifier {
     } else if (navPart == NavPart.timeMoney) {
       this.visibleFractionTimeMoney = visibleFraction;
     } else if (navPart == NavPart.recommandation) {
-      this.visibleFractionContactMe = visibleFraction;
+      this.visibleFractionRecommandation = visibleFraction;
     } else if (navPart == NavPart.contactMe) {
       this.visibleFractionContactMe = visibleFraction;
     }

@@ -24,8 +24,10 @@ int navPartToInt(NavPart navPart) {
     return 1;
   } else if (navPart == NavPart.timeMoney) {
     return 2;
-  } else if (navPart == NavPart.contactMe) {
+  } else if (navPart == NavPart.recommandation) {
     return 3;
+  } else if (navPart == NavPart.contactMe) {
+    return 4;
   }
   return null;
 }
