@@ -13,6 +13,7 @@ class MyAppBar {
   static List<Widget> buildActions({
     @required BuildContext context,
     @required int focusOn,
+    @required Function(int) setNewNav,
     @required Function(String) setLanguage,
     @required Function(int) scrollNavItem,
     @required bool displayNavItems,
@@ -30,7 +31,7 @@ class MyAppBar {
         padding: EdgeInsets.only(
             right: (screenWidth < 1280)
                 ? -433 + 0.528 * screenWidth
-                : -600 + 0.568 * screenWidth),
+                : -335 + 0.32 * screenWidth),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: NavItems.navItems.map((NavItem navItem) {
@@ -41,6 +42,7 @@ class MyAppBar {
                   child: FlatButton(
                     //autofocus: (focusOn == navItem.scrollIndex),
                     onPressed: () {
+                      setNewNav(navItem.scrollIndex);
                       scrollNavItem(navItem.scrollIndex);
                     },
                     //color: theme.getTheme().focusColor,
@@ -60,8 +62,7 @@ class MyAppBar {
                           ),
                           Flexible(
                             child: Text(
-                              NavItems.getNavItemName(
-                                  context, navItem.nameCode),
+                              NavItems.getNavItemName(context, navItem.navPart),
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                   fontSize: Theme.of(context)

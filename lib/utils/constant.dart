@@ -10,4 +10,6 @@ class Const {
   static const double smallPadding = 13.0;
 
   static const double mediumScreen = 840.0;
+
+  static const int durationScroll = 600;
 }

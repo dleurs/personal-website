@@ -77,6 +77,11 @@ class ScrollHomeScreen with ChangeNotifier {
     return actualMax;
   }
 
+  void setNewVisible(int navNum) {
+    focusOn = intToNavPart(navNum);
+    notifyListeners();
+  }
+
   void updateMetricPixel(double metricsPixel) {
     this.metricsPixel = metricsPixel;
     notifyListeners();

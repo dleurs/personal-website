@@ -1,6 +1,6 @@
 # Flutter web portofolio
 
-Test the website <a href="https://dimitrileurs.com/">here</a> at https://dimitrileurs.com/
+Test the website <a href="https://dimitri.leurs.dev/">here</a> at https://dimitri.leurs.dev
 
 ![demo-app](assets/gif/personal-website-demo.gif)
 

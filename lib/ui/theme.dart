@@ -36,7 +36,7 @@ class AppThemeNotifier with ChangeNotifier {
   }
 
   AppThemeNotifier() {
-    StorageManager.readData('themeMode').then((value) {
+    LocalStorage.readData('themeMode').then((value) {
       print('value read from storage: ' + value.toString());
       var themeMode = value ?? 'light';
       if (themeMode == 'light') {
@@ -51,13 +51,13 @@ class AppThemeNotifier with ChangeNotifier {
 
   void setDarkMode() async {
     _themeData = darkTheme;
-    StorageManager.saveData('themeMode', 'dark');
+    LocalStorage.saveData('themeMode', 'dark');
     notifyListeners();
   }
 
   void setLightMode() async {
     _themeData = lightTheme;
-    StorageManager.saveData('themeMode', 'light');
+    LocalStorage.saveData('themeMode', 'light');
     notifyListeners();
   }
 

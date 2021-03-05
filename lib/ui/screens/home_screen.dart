@@ -59,7 +59,7 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
       key.currentContext.findRenderObject(),
       alignment:
           0, // How far into view the item should be scrolled (between 0 and 1).
-      duration: const Duration(milliseconds: 600),
+      duration: const Duration(milliseconds: Const.durationScroll),
     );
   }
 
@@ -89,6 +89,7 @@ class _HomeScreenProvidedState extends BaseScreenState<HomeScreenProvided> {
     return MyAppBar.buildActions(
       context: context,
       focusOn: navPartToInt(scrollProvider.focusOn),
+      setNewNav: scrollProvider.setNewVisible,
       setLanguage: setLanguage,
       scrollNavItem: scrollNavItem,
       displayNavItems: (width > Const.mediumScreen),
